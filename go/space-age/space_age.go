@@ -97,10 +97,10 @@ func Age(earthSeconds uint64, planet string) (float32, error) {
 			if years, ok := secondsPerYear[planet]; ok { // "comma ok" idiom
 				return float32(earthSeconds) / years, nil
 			}
-	*/
 
-	var years float32                            // define a type for 'years'
-	var ok bool                                  // used as a flag, so its type is boolean
+		So the declaration is not only not needed, it's not allowed. How does Go know
+		the type of these variables then? Assuming a type doesn't seem very Go-like.
+	*/
 	if years, ok := secondsPerYear[planet]; ok { // "comma ok" idiom
 		return float32(earthSeconds) / years, nil
 	}
