@@ -22,7 +22,7 @@ From the exercise info:
 	Neptune: orbital period 164.79132 Earth years
 
 */
-var secondsPerYear = map[string]float32{
+var secondsPerYear = map[string]float64{
 	"Earth":   31557600,
 	"Mercury": 0.2408467 * 31557600,
 	"Venus":   0.61519726 * 31557600,
@@ -59,8 +59,20 @@ The tests give:
 
 So it looks like the test requires that Age not return an error.
 
+https://golang.org/pkg/math/#NaN
+
+	looks like float64 is required-- convert all the floats to float64 to match
+	this test case requirement.
+
+New test failure:
+
+.\cases_test.go:9:14: undefined: Planet
+FAIL    _/C_/Users/sbonds/Exercism/go/space-age [build failed]
+
+So we need to create a new variable type called "Planet"... how to do that?
+
 */
-func Age(earthSeconds uint64, planet string) float32 {
+func Age(earthSeconds uint64, planet string) float64 {
 	/*
 		Check if we have info on the number of seconds for the given planet
 
@@ -104,7 +116,7 @@ func Age(earthSeconds uint64, planet string) float32 {
 		the type of these variables then? Assuming a type doesn't seem very Go-like.
 	*/
 	if years, ok := secondsPerYear[planet]; ok { // "comma ok" idiom
-		return float32(earthSeconds) / years
+		return float64(earthSeconds) / years
 	}
 
 	/*
