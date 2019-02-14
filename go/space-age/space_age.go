@@ -3,6 +3,34 @@ based on the number of Earth seconds.
 */
 package space
 
+/* Planet appears to be an enumerated type based on reading cases_test.rb:
+
+	var testCases = []struct {
+		description string
+		planet      Planet
+		seconds     float64
+		expected    float64
+	}
+
+It's not defined anywhere else, so it looks like it was expected that I define it.
+
+That's a heck of a leap from "Hello, World!"
+
+https://en.wikipedia.org/wiki/Enumerated_type#Go
+*/
+type Planet string
+
+const (
+	Earth = iota
+	Mercury
+	Venus
+	Mars
+	Jupiter
+	Saturn
+	Uranus
+	Neptune
+)
+
 /*
 variable secondsPerYear: records the number of Earth seconds is the length of
 each planet's year.
@@ -22,15 +50,15 @@ From the exercise info:
 	Neptune: orbital period 164.79132 Earth years
 
 */
-var secondsPerYear = map[string]float64{
-	"Earth":   31557600,
-	"Mercury": 0.2408467 * 31557600,
-	"Venus":   0.61519726 * 31557600,
-	"Mars":    1.8808158 * 31557600,
-	"Jupiter": 11.862615 * 31557600,
-	"Saturn":  29.447498 * 31557600,
-	"Uranus":  84.016846 * 31557600,
-	"Neptune": 164.79132 * 31557600,
+var secondsPerYear = map[int]float64{
+	Earth:   31557600,
+	Mercury: 0.2408467 * 31557600,
+	Venus:   0.61519726 * 31557600,
+	Mars:    1.8808158 * 31557600,
+	Jupiter: 11.862615 * 31557600,
+	Saturn:  29.447498 * 31557600,
+	Uranus:  84.016846 * 31557600,
+	Neptune: 164.79132 * 31557600,
 }
 
 /*Age calculates a duration in planet-specific years based on the number
@@ -71,8 +99,12 @@ FAIL    _/C_/Users/sbonds/Exercism/go/space-age [build failed]
 
 So we need to create a new variable type called "Planet"... how to do that?
 
+This was sort of helpful:
+
+https://stackoverflow.com/questions/14426366/what-is-an-idiomatic-way-of-representing-enums-in-go?noredirect=1&lq=1
+
 */
-func Age(earthSeconds uint64, planet string) float64 {
+func Age(earthSeconds float64, planet Planet) float64 {
 	/*
 		Check if we have info on the number of seconds for the given planet
 
