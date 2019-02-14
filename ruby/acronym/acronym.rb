@@ -74,6 +74,12 @@ class Acronym
     # and then upcase it before adding it to our initialism
     # Get fancy with "map"
     # https://stackoverflow.com/questions/5254128/arrayeach-vs-arraymap
-    phrase.scan(/\b\w/).map { |letter| letter.upcase }.join
+    # 
+    # So the map isn't even needed since scan returns an array of its
+    # matches. Once merger into a single string via join the whole thing
+    # can be upcased instead of a character at a time.
+    #
+    # So much work crammed into one tiny line of code!
+    phrase.scan(/\b\w/).join.upcase
   end
 end
