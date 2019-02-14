@@ -3,7 +3,7 @@ based on the number of Earth seconds.
 */
 package space
 
-/* Planet appears to be an enumerated type based on reading cases_test.rb:
+/*Planet appears to be an enumerated type based on reading cases_test.rb:
 
 	var testCases = []struct {
 		description string
@@ -17,19 +17,17 @@ It's not defined anywhere else, so it looks like it was expected that I define i
 That's a heck of a leap from "Hello, World!"
 
 https://en.wikipedia.org/wiki/Enumerated_type#Go
+
+Maybe the whole enumerated list thing is overkill and all I need to do
+is tell Go that Planets are strings?
+
+Yes, that was all I needed. /facepalm
+
+This doesn't enforce anything like "Only these Planets are allowed"... I wonder
+how I would do that?
+
 */
 type Planet string
-
-const (
-	Earth = iota
-	Mercury
-	Venus
-	Mars
-	Jupiter
-	Saturn
-	Uranus
-	Neptune
-)
 
 /*
 variable secondsPerYear: records the number of Earth seconds is the length of
@@ -50,15 +48,15 @@ From the exercise info:
 	Neptune: orbital period 164.79132 Earth years
 
 */
-var secondsPerYear = map[int]float64{
-	Earth:   31557600,
-	Mercury: 0.2408467 * 31557600,
-	Venus:   0.61519726 * 31557600,
-	Mars:    1.8808158 * 31557600,
-	Jupiter: 11.862615 * 31557600,
-	Saturn:  29.447498 * 31557600,
-	Uranus:  84.016846 * 31557600,
-	Neptune: 164.79132 * 31557600,
+var secondsPerYear = map[Planet]float64{
+	"Earth":   31557600,
+	"Mercury": 0.2408467 * 31557600,
+	"Venus":   0.61519726 * 31557600,
+	"Mars":    1.8808158 * 31557600,
+	"Jupiter": 11.862615 * 31557600,
+	"Saturn":  29.447498 * 31557600,
+	"Uranus":  84.016846 * 31557600,
+	"Neptune": 164.79132 * 31557600,
 }
 
 /*Age calculates a duration in planet-specific years based on the number
