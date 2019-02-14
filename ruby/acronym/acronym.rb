@@ -76,6 +76,6 @@ class Acronym
     # and then upcase it before adding it to our initialism
     # Get fancy with "map"
     # https://stackoverflow.com/questions/5254128/arrayeach-vs-arraymap
-    phrase.scan(/\b\w/).map { |letter| letter.upcase }
+    phrase.scan(/\b\w/).map { |letter| letter.upcase }.join
   end
 end
