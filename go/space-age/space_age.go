@@ -1,15 +1,7 @@
-/* Package space implements a function to calculate a duration in planet-specific years
+/*Package space implements a function to calculate a duration in planet-specific years
 based on the number of Earth seconds.
-
-The function is called Age.
-
 */
 package space
-
-import (
-	"errors"
-	"fmt"
-)
 
 /*
 variable secondsPerYear: records the number of Earth seconds is the length of
@@ -41,11 +33,13 @@ var secondsPerYear = map[string]float32{
 	"Neptune": 164.79132 * 31557600,
 }
 
-/*
-Function Age: calculates a duration in planet-specific years based on the number
+/*Age calculates a duration in planet-specific years based on the number
 of Earth seconds provided. Called as:
 
 Age(Earth seconds (integer), Planet name(string))
+
+go-lint requires that there be no whitespace after the comment start. It hurts!
+https://github.com/golang/lint/issues/152
 
 https://golang.org/ref/spec#Predeclared_identifiers
 
@@ -57,8 +51,16 @@ Also, if we're going to return an error, it needs to be in the declaration.
 https://gobyexample.com/errors
 "By convention, errors are the last return value and have type error, a built-in interface."
 
+The tests give:
+
+	.\cases_test.go:9:14: undefined: Planet
+	.\space_age_test.go:11:16: multiple-value Age() in single-value context
+	FAIL    _/C_/Users/sbonds/Exercism/go/space-age [build failed]
+
+So it looks like the test requires that Age not return an error.
+
 */
-func Age(earthSeconds uint64, planet string) (float32, error) {
+func Age(earthSeconds uint64, planet string) float32 {
 	/*
 		Check if we have info on the number of seconds for the given planet
 
@@ -102,12 +104,13 @@ func Age(earthSeconds uint64, planet string) (float32, error) {
 		the type of these variables then? Assuming a type doesn't seem very Go-like.
 	*/
 	if years, ok := secondsPerYear[planet]; ok { // "comma ok" idiom
-		return float32(earthSeconds) / years, nil
+		return float32(earthSeconds) / years
 	}
 
 	/*
 		https://gobyexample.com/errors
 	*/
-	return -1, errors.New(fmt.Sprintf("Unknown planet: %s", planet))
-
+	// Can't return an error due to the requirements of the test environment.
+	// return -1, errors.New(fmt.Sprintf("Unknown planet: %s", planet))
+	return -1
 }
