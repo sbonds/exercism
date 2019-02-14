@@ -67,8 +67,6 @@ Forget the implied return, guess I need to make it explicit.
 
 class Acronym
   def self.abbreviate(phrase)
-    # If not reset, value seemed to get carried over between tests
-    initialism = ''
     # Here's a good way to get fancy with regexps on a string:
     # https://ruby-doc.org/core-2.5.3/String.html#method-i-scan
     # https://ruby-doc.org/core-2.5.3/Regexp.html
