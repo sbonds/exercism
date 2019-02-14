@@ -74,9 +74,8 @@ class Acronym
     # https://ruby-doc.org/core-2.5.3/Regexp.html
     # Look for the first word character (\w) after a word boundary (\b)
     # and then upcase it before adding it to our initialism
-    phrase.scan(/\b\w/).each do |letter|
-      initialism << letter.upcase
-    end
-    return initialism
+    # Get fancy with "map"
+    # https://stackoverflow.com/questions/5254128/arrayeach-vs-arraymap
+    phrase.scan(/\b\w/).map { |letter| letter.upcase }
   end
 end
