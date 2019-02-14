@@ -67,14 +67,8 @@ Forget the implied return, guess I need to make it explicit.
 
 class Acronym
   def self.abbreviate(phrase)
-    # If not reset, value seemed to get carried over between tests
-    @initialism = ''
     phrase.split(/\W+/).each do |word|
-      @initialism << word[0].upcase
+      initialism << word[0].upcase
     end
-    # If this wasn't here an array was getting returned. Perhaps Ruby was
-    # returning the value of the loop itself instead of the last statement
-    # in the loop
-    @initialism
   end
 end
