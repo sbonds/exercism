@@ -16,5 +16,15 @@ func Distance(a, b string) (int, error) {
 	if len(a) != len(b) {
 		return -1, fmt.Errorf("Cannot compare different length strings: %d vs. %d", len(a), len(b))
 	}
-	return 0, nil
+
+	var difference = 0
+	// Try an old fashioned "for" loop. Classic!
+	// Helpful: https://www.digitalocean.com/community/questions/how-to-efficiently-compare-strings-in-go
+	for i := 0; i < len(a); i++ {
+		if a[i] == b[i] {
+			continue
+		}
+		difference++
+	}
+	return difference, nil
 }
