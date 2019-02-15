@@ -20,7 +20,10 @@ class FlattenArray
     # Iterate over the array we received
     array_to_flatten.each do |element|
       # Skip nil values explicitly
-      next if element == nil
+      # By looking at other Exercism solutions I discovered the wonderful
+      # array operator "compact" which removes all nil elements. NICE.
+      # Add that to the final return and skip this element-by-element check
+      #next if element == nil
       # https://stackoverflow.com/questions/1527888/ruby-test-for-array
       # zgchurch answer
       if element.respond_to?('each')
@@ -32,6 +35,6 @@ class FlattenArray
       # of the array as-is
       flat_array << element
     end
-    return flat_array
+    return flat_array.compact
   end
 end
