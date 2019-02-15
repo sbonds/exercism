@@ -14,10 +14,12 @@ return an error.
 */
 func Distance(a, b string) (int, error) {
 	if len(a) != len(b) {
-		return -1, fmt.Errorf("Cannot compare different length strings: %d vs. %d", len(a), len(b))
+		// Go tends to return 0 as the int on error as a style choice, unlike
+		// the -1 found in C.
+		return 0, fmt.Errorf("Cannot compare different length strings: %d vs. %d", len(a), len(b))
 	}
 
-	var difference = 0
+	difference := 0 // Go style choice for declaring and initializing a variable
 	// Try an old fashioned "for" loop. Classic!
 	// Helpful: https://www.digitalocean.com/community/questions/how-to-efficiently-compare-strings-in-go
 	for i := 0; i < len(a); i++ {
