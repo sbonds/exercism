@@ -25,10 +25,11 @@ class FlattenArray
       # zgchurch answer
       if element.respond_to?('each')
         # If the element has an each method, I can flatten it! :-)
-        flat_array << self.flatten(element)
+        flat_array += self.flatten(element)
+        next
       end
-      # If it doesn't have an each method, it gets handed back as-is since we
-      # can't flatten it.
+      # If it doesn't have an each method, the element goes onto the end
+      # of the array as-is
       flat_array << element
     end
     return flat_array
