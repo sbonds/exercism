@@ -16,22 +16,16 @@ flatten that array before continuing to the next element.
 class FlattenArray
   def self.flatten(array_to_flatten)
     flat_array = []
-    # Iterate over the array we received
-    array_to_flatten.each { |element|
-      # Skip nil values explicitly
-      # By looking at other Exercism solutions I discovered the wonderful
-      # array operator "compact" which removes all nil elements. NICE.
-      # Add that to the final return and skip this element-by-element check
-      #next if element == nil
-      # https://stackoverflow.com/questions/1527888/ruby-test-for-array
-      # zgchurch answer
-      # If the element has an each method, I can flatten it! :-)
-      # If it doesn't have an each method, the element goes onto the end
-      # of the array as-is
-      # This is the same logic as before, just using a ternary operator instead of
-      # an if statement across multiple lines.
-      element.respond_to?('each') ? flat_array += self.flatten(element) : flat_array << element
-    }
+    # By looking at other Exercism solutions I discovered the wonderful
+    # array operator "compact" which removes all nil elements. NICE.
+    # Add that to the final return and skip any element-by-element nil check
+    #
+    # https://stackoverflow.com/questions/1527888/ruby-test-for-array
+    # zgchurch answer seems nicely Ruby-ish.
+    # If the element has an each method, I can flatten it! :-)
+    # If it doesn't have an each method, the element goes onto the end
+    # of the array as-is
+    array_to_flatten.each { |element| element.respond_to?('each') ? flat_array += self.flatten(element) : flat_array << element }
     flat_array.compact
   end
 end
