@@ -15,7 +15,6 @@ flatten that array before continuing to the next element.
 =end
 class FlattenArray
   def self.flatten(array_to_flatten)
-    # Start with a not very Ruby-ish but easy to follow code.
     flat_array = []
     # Iterate over the array we received
     array_to_flatten.each { |element|
