@@ -4,7 +4,7 @@ a factor and return appropriate raindroplike text back.
 package raindrops
 
 import (
-	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -31,7 +31,7 @@ func Convert(number int) string {
 		sound = append(sound, "Plong")
 	}
 	if len(sound) == 0 {
-		return fmt.Sprintf("%d", number)
+		return strconv.Itoa(number)
 	}
-	return fmt.Sprint(strings.Join(sound, ""))
+	return strings.Join(sound, "")
 }
