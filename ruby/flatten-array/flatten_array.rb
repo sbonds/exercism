@@ -16,6 +16,7 @@ flatten that array before continuing to the next element.
 class FlattenArray
   def self.flatten(array_to_flatten)
     # Start with a not very Ruby-ish but easy to follow code.
+    flat_array = []
     # Iterate over the array we received
     array_to_flatten.each do |element|
       # Skip nil values explicitly
@@ -24,10 +25,12 @@ class FlattenArray
       # zgchurch answer
       if element.respond_to?('each')
         # If the element has an each method, I can flatten it! :-)
-        self.flatten(element)
+        flat_array << self.flatten(element)
       end
       # If it doesn't have an each method, it gets handed back as-is since we
       # can't flatten it.
+      flat_array << element
     end
+    return flat_array
   end
 end
