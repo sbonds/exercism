@@ -18,7 +18,7 @@ class FlattenArray
     # Start with a not very Ruby-ish but easy to follow code.
     flat_array = []
     # Iterate over the array we received
-    array_to_flatten.each do |element|
+    array_to_flatten.each { |element|
       # Skip nil values explicitly
       # By looking at other Exercism solutions I discovered the wonderful
       # array operator "compact" which removes all nil elements. NICE.
@@ -26,15 +26,13 @@ class FlattenArray
       #next if element == nil
       # https://stackoverflow.com/questions/1527888/ruby-test-for-array
       # zgchurch answer
-      if element.respond_to?('each')
-        # If the element has an each method, I can flatten it! :-)
-        flat_array += self.flatten(element)
-        next
-      end
+      # If the element has an each method, I can flatten it! :-)
       # If it doesn't have an each method, the element goes onto the end
       # of the array as-is
-      flat_array << element
-    end
-    return flat_array.compact
+      # This is the same logic as before, just using a ternary operator instead of
+      # an if statement across multiple lines.
+      element.respond_to?('each') ? flat_array += self.flatten(element) : flat_array << element
+    }
+    flat_array.compact
   end
 end
