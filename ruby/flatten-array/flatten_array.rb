@@ -15,7 +15,6 @@ flatten that array before continuing to the next element.
 =end
 class FlattenArray
   def self.flatten(array_to_flatten)
-    flat_array = []
     # By looking at other Exercism solutions I discovered the wonderful
     # array operator "compact" which removes all nil elements. NICE.
     # Add that to the final return and skip any element-by-element nil check
@@ -25,7 +24,12 @@ class FlattenArray
     # If the element has an each method, I can flatten it! :-)
     # If it doesn't have an each method, the element goes onto the end
     # of the array as-is
-    array_to_flatten.each { |element| element.respond_to?('each') ? flat_array += self.flatten(element) : flat_array << element }
-    flat_array.compact
+    #
+    # The mentor ajoshguy let me know that "flatten" even exists in Ruby itself.
+    # Though he considers it "cheating", in my opinion one of the great things
+    # about Ruby is that it can do so much in so few lines of code. The hard
+    # part is learning all those possible options.
+    # So, the most Ruby-ish possible answer I could find...
+    array_to_flatten.flatten.compact
   end
 end
