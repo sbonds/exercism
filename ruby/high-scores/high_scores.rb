@@ -23,9 +23,10 @@ class HighScores
   def personal_best
     # http://ruby-doc.org/core-2.5.3/Enumerable.html#method-i-max
     # There's even a method for giving the max 'n' values. NICE!
-    scores.max
+    @scores.max
   end
 
   def personal_top_three
-    scores.max(3)
+    @scores.max(3)
+  end
 end
