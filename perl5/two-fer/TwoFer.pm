@@ -6,7 +6,10 @@ our @EXPORT_OK = qw(two_fer);
 
 sub two_fer {
   my ($name) = @_;
-  return undef;
+  if (! defined($name)) {
+    $name = "you";
+  }
+  return "One for $name, one for me.";
 }
 
 1;
