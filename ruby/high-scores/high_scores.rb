@@ -12,12 +12,10 @@ personal_top_three: returns an array of up to three elements containing the high
 =end
 
 class HighScores
+  attr_reader :scores
+
   def initialize(scores)
     @scores=scores
-  end
-
-  def scores
-    @scores
   end
 
   def personal_best
