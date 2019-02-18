@@ -17,7 +17,7 @@ class HighScores
   end
 
   def scores
-    return @scores
+    @scores
   end
 
   def personal_best
@@ -28,5 +28,11 @@ class HighScores
 
   def personal_top_three
     @scores.max(3)
+  end
+
+  def latest
+    # https://ruby-doc.org/core-2.5.3/Array.html#method-i-last
+    # Ruby has everything! (If you know where to find it.)
+    @scores.last
   end
 end
