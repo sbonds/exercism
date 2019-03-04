@@ -15,6 +15,10 @@ Strings, bytes, runes, and characters. Oh, my!
 /* Could I make a map with both upper and lowercase keys to the same value?
 https://golang.org/ref/spec#Composite_literals
 No, no I cannot.
+
+Also bitfield-the-mentor let me know that maps return zero instead of an error
+for missing keys. That can be a great shortcut, but also can lead to unexpected
+issues if we hit a key that we thought should be mapped, but wasn't.
 */
 var letterScore = map[rune]int{
 	'A': 1,
@@ -56,10 +60,11 @@ func Score(originalWord string) int {
 	wordScore := 0
 	// Iterating over a string: https://golang.org/doc/effective_go.html#for
 	// Also helpful: https://blog.golang.org/strings
-	for i := 0; i < len(word); i++ {
+	// https://stackoverflow.com/questions/18130859/how-can-i-iterate-over-a-string-by-runes-in-go
+	for pos, char := range word {
 		// It might be smart to put a handler in here for the case of letterScore not
 		// existing for a given byte
-		wordScore += letterScore[word[i]]
+		wordScore += letterScore[char]
 	}
 	return wordScore
 }
