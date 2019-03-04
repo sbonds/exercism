@@ -68,3 +68,18 @@ func Score(originalWord string) int {
 	}
 	return wordScore
 }
+
+/* Benchmarks:
+
+Naive rune-based implementation:
+
+	$ go test -v --bench . --benchmem
+	=== RUN   TestScore
+	--- PASS: TestScore (0.00s)
+	goos: windows
+	goarch: amd64
+	BenchmarkScore-4         1000000              1217 ns/op             152 B/op        16 allocs/op
+	PASS
+	ok      scrabble-score    1.560s
+
+*/
