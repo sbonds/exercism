@@ -17,14 +17,19 @@ class Matrix
     # 2) Two pass, splitting newlines into an array of strings and then splitting 
     #    each string into digits-on-word-boundaries 
     just_rows = array_text.split(/\n/)
-    just_rows.each { |number| @array_of_arrays << number.scan(/\b\d+/) }
+    # The below does not create an array of integers, instead it creates an array of strings
+    #    just_rows.each { |rawInputRow| @array_of_arrays << rawInputRow.scan(/\b\d+/).each{ |number| number.to_i } }
+    # ... yeah, because I'm not running something on each, I'm mapping each item to something else so I should use "map"
+    just_rows.each { |rawInputRow| @array_of_arrays << rawInputRow.scan(/\b\d+/).map{ |number| number.to_i} }
   end
 
-  def rows(rownum)
-    @array_of_arrays[rownum]
+  def rows
+    @array_of_arrays
   end
 
-  def columns(columnnum)
-    @array_of_arrays.each[columnnum]
+  def columns
+    # Wow, Ruby has everything!
+    # https://ruby-doc.org/core-2.5.3/Array.html#method-i-transpose
+    @array_of_arrays.transpose
   end
 end
