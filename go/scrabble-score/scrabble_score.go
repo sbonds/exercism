@@ -3,7 +3,7 @@ the Scrabble game
 */
 package scrabble
 
-import "strings"
+import "unicode"
 
 /* The value for each letter. We could have made this more compact by
 making arrays of letters and searching them to find the values, but the
@@ -55,16 +55,16 @@ It does not look like the testing method requires a way to pass in options
 like letter or word score multipliers.
 */
 func Score(originalWord string) int {
-	// Make the input uppercase to simplify the map we need to make
-	word := strings.ToUpper(originalWord)
 	wordScore := 0
 	// Iterating over a string: https://golang.org/doc/effective_go.html#for
 	// Also helpful: https://blog.golang.org/strings
 	// https://stackoverflow.com/questions/18130859/how-can-i-iterate-over-a-string-by-runes-in-go
-	for _, char := range word {
+	for _, char := range originalWord {
+		// Make the input uppercase to simplify the map we need to make
+		uppercaseChar := unicode.ToUpper(char)
 		// It might be smart to put a handler in here for the case of letterScore not
 		// existing for a given byte
-		wordScore += letterScore[char]
+		wordScore += letterScore[uppercaseChar]
 	}
 	return wordScore
 }
@@ -81,5 +81,16 @@ Naive rune-based implementation:
 	BenchmarkScore-4         1000000              1217 ns/op             152 B/op        16 allocs/op
 	PASS
 	ok      scrabble-score    1.560s
+
+Using unicode.ToUpper inside the loop instead of converting the word ahead of time:
+
+	$ go test -v --bench . --benchmem
+	=== RUN   TestScore
+	--- PASS: TestScore (0.00s)
+	goos: windows
+	goarch: amd64
+	BenchmarkScore-4         2000000               872 ns/op               0 B/op         0 allocs/op
+	PASS
+	ok      scrabble-score    3.548s
 
 */
