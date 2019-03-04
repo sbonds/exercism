@@ -13,7 +13,7 @@ our @EXPORT_OK = qw(grains_on_square total_grains);
 sub grains_on_square {
   my ($square) = @_;
   # Only 64 squares on a board
-  if ($square < 1 || $square > 64) { return undef; }
+  if ($square < 1 || $square > 64) { die "$square not in range 1-64" ; }
   return 2**($square - 1);
 }
 
