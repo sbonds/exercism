@@ -12,7 +12,11 @@ to read. */
 /* https://blog.golang.org/strings
 Strings, bytes, runes, and characters. Oh, my!
 */
-var letterScore = map[byte]int{
+/* Could I make a map with both upper and lowercase keys to the same value?
+https://golang.org/ref/spec#Composite_literals
+No, no I cannot.
+*/
+var letterScore = map[rune]int{
 	'A': 1,
 	'B': 3,
 	'C': 3,
