@@ -61,7 +61,7 @@ func Score(originalWord string) int {
 	// Iterating over a string: https://golang.org/doc/effective_go.html#for
 	// Also helpful: https://blog.golang.org/strings
 	// https://stackoverflow.com/questions/18130859/how-can-i-iterate-over-a-string-by-runes-in-go
-	for pos, char := range word {
+	for _, char := range word {
 		// It might be smart to put a handler in here for the case of letterScore not
 		// existing for a given byte
 		wordScore += letterScore[char]
