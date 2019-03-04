@@ -94,6 +94,6 @@ Using unicode.ToUpper inside the loop instead of converting the word ahead of ti
 	ok      scrabble-score    3.548s
 
 A test with a double-sized map including lowercase characters resulted in an identical BenchmarkScore-4
-and run times identical to the prior one (within normal variance.)
+run time as compared to the prior one (within normal variance.)
 
 */
