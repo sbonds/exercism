@@ -19,7 +19,7 @@ https://ruby-doc.org/core-2.5.3/Numeric.html#method-i-25
 =end
 
 class Year
-  def self.leap?(year)
+  def self.leap?(year) # Why does this need to be 'def self.leap?'' instead of 'def leap?' ?
     # It's so easy when I rephrase it using boolean operators. :-)
     return ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0)))
   end
