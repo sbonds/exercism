@@ -27,8 +27,8 @@ class Matrix
     # Wow, OK. That took me on a big tour of Ruby, which is great. That's what mentors are for and a huge
     # advantage of Exercism over other self-paced learning methods. The interactive Ruby browser was
     # super helpful in exploring how the methods behave. For example:
-    #   >> "1 2\n3 4\n\5 6\n".each_line
-    #   => #<Enumerator: "1 2\n3 4\n\x05 6\n":each_line>
+    #   >> "1 2\n3 4\n5 6\n".each_line
+    #   => #<Enumerator: "1 2\n3 4\n5 6\n":each_line>
     #
     # https://ruby-doc.org/core-2.5.3/Enumerator.html
     # Included modules: Enumerable https://ruby-doc.org/core-2.5.3/Enumerable.html
@@ -58,7 +58,14 @@ class Matrix
     # Can't do the whole array that way. How do we map array values to something else? map again!
     #   >> "1 2\n3 4\n5 6\n".each_line(chomp:true).map{ |s| s.scan(/\b\d+/).map{ |s2| s2.to_i } }
     #   => [[1, 2], [3, 4], [5, 6]]
-    @array_of_arrays = array_text.each_line(chomp:true).map{ |whole_line| whole_line.scan(/\b\d+/).map{ |number_as_string| number_as_string.to_i } }
+    #
+    # More feedback from kiru42: look at split and the block shortcut "&:"
+    # https://stackoverflow.com/questions/1217088/what-does-mapname-mean-in-ruby
+    #   >> "1 2\n3 4\n5 6\n".each_line.map{ |whole_line| whole_line.split }
+    #   => [["1", "2"], ["3", "4"], ["5", "6"]]
+    #   >> "1 2\n3 4\n5 6\n".each_line.map{ |whole_line| whole_line.split.map(&:to_i) }
+    #   => [[1, 2], [3, 4], [5, 6]]
+    @array_of_arrays = array_text.each_line.map{ |whole_line| whole_line.split.map(&:to_i) }
   end
 
   def rows
