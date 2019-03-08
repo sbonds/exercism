@@ -74,6 +74,10 @@ class Phrase
     #
     # That seems to embody the test logic of "apostrophes are the only acceptable punctuation, but words
     # surrounded by single quotes are not allowed."
+    #
+    # Simpler way using word boundary checks. I thought that 'evil' matched in an earlier test, but it appears not
+    #  >> count=Hash.new(0);"Don't be evil just to be 'evil'".downcase.scan(/\b[\w']+\b/)
+    #  => ["don't", "be", "evil", "just", "to", "be", "evil"]
     count=Hash.new(0)
     @phrase.downcase.scan(/\b[\w']+\b/).each{ |word| count[word]+= 1}
     return count
