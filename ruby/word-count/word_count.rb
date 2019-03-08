@@ -62,8 +62,20 @@ class Phrase
     #  {"bob"=>2, "bub"=>1, "boob"=>1, "blob"=>1}
     #
     # "split" appears overly simplistic based on the test criteria. Time for a regex rescue?
+    #  scan works nicely on most tests
+    #
+    # The test with quotations is pure evil. Back to IRB!
+    #  >> count=Hash.new(0);"Don't be evil just to be 'evil'".downcase.scan(/[\w']+/).sort.each{ |word| count[word]+= 1}
+    #  => ["'evil'", "be", "be", "don't", "evil", "just", "to"]
+    #
+    # eventually...
+    #  >> count=Hash.new(0);"Don't be evil just to be 'evil'".downcase.scan(/[\w']+/).map{ |word| word.gsub(/\A'|'\z/,"") }
+    #  => ["don't", "be", "evil", "just", "to", "be", "evil"]
+    #
+    # That seems to embody the test logic of "apostrophes are the only acceptable punctuation, but words
+    # surrounded by single quotes are not allowed."
     count=Hash.new(0)
-    @phrase.downcase.scan(/[\w']+/).sort.each{ |word| count[word]+= 1}
+    @phrase.downcase.scan(/[\w']+/).map{ |word| word.gsub(/\A'|'\z/,"") }.sort.each{ |word| count[word]+= 1}
     return count
   end
 end
