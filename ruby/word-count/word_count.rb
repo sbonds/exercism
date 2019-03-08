@@ -75,7 +75,7 @@ class Phrase
     # That seems to embody the test logic of "apostrophes are the only acceptable punctuation, but words
     # surrounded by single quotes are not allowed."
     count=Hash.new(0)
-    @phrase.downcase.scan(/[\w']+/).map{ |word| word.gsub(/\A'|'\z/,"") }.sort.each{ |word| count[word]+= 1}
+    @phrase.downcase.scan(/\b[\w']+\b/).each{ |word| count[word]+= 1}
     return count
   end
 end
