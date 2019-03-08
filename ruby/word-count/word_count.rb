@@ -60,8 +60,10 @@ class Phrase
     #  => ["bob", "bub", "boob", "blob", "bob"]
     #  >> p count
     #  {"bob"=>2, "bub"=>1, "boob"=>1, "blob"=>1}
+    #
+    # "split" appears overly simplistic based on the test criteria. Time for a regex rescue?
     count=Hash.new(0)
-    @phrase.downcase.split.sort.each{ |word| count[word]+= 1}
+    @phrase.downcase.scan(/[\w']+/).sort.each{ |word| count[word]+= 1}
     return count
   end
 end
