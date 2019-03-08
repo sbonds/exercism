@@ -48,8 +48,21 @@ class Phrase
     #  => 0
     # Guess that's just an effect of the to_h, The hash itself seems to have the right values for the right keys
     #
+    # Or maybe not... 
+    #  @phrase.downcase.split.sort.chunk{ |word| count[word]+= 1}.to_h
+    # fails the test with something familiar:
+    #  Expected: {"word"=>1}
+    #  Actual: {1=>["word"]}
+    #
+    # I don't think chunk is doing what I think it's doing. Perhaps it's time to fall back on a more
+    # traditional loop and see what the Ruby mentors have to say might be a better way.
+    #  >> count=Hash.new(0);"Bob bub boob blob bob".downcase.split.each{ |word| count[word]+=1 }
+    #  => ["bob", "bub", "boob", "blob", "bob"]
+    #  >> p count
+    #  {"bob"=>2, "bub"=>1, "boob"=>1, "blob"=>1}
     count=Hash.new(0)
-    @phrase.downcase.split.sort.chunk{ |word| count[word]+= 1}.to_h
+    @phrase.downcase.split.sort.each{ |word| count[word]+= 1}
+    return count
   end
 end
 
