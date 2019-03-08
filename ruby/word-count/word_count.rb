@@ -52,3 +52,6 @@ class Phrase
     @phrase.downcase.split.sort.chunk{ |word| count[word]+= 1}.to_h
   end
 end
+
+# Questions remaining:
+#  What does "elt" in the Enumberable documentation for chunk() stand for?
