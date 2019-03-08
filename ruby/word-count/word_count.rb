@@ -78,9 +78,17 @@ class Phrase
     # Simpler way using word boundary checks. I thought that 'evil' matched in an earlier test, but it appears not
     #  >> count=Hash.new(0);"Don't be evil just to be 'evil'".downcase.scan(/\b[\w']+\b/)
     #  => ["don't", "be", "evil", "just", "to", "be", "evil"]
-    count=Hash.new(0)
-    @phrase.downcase.scan(/\b[\w']+\b/).each{ |word| count[word]+= 1}
-    return count
+    #
+    # Mentor tenebrousedge suggested looking into the Enumerable method each_with_object. The description wasn't super helpful
+    # as I was reading through it:
+    # "Iterates the given block for each element with an arbitrary object given, and returns the initially given object."
+    # However, given the original code I have:
+    #   count=Hash.new(0)
+    #   @phrase.downcase.scan(/\b[\w']+\b/).each{ |word| count[word]+= 1}
+    #   return count
+    # And the pointer from tenebrousedge, it starts to make more sense. each_with_object is basically doing what I did before, but crammed
+    # into one line since the hash object initialization gets merged into the each{}
+    @phrase.downcase.scan(/\b[\w']+\b/).each_with_object(Hash.new(0)){ |word, count| count[word]+= 1}
   end
 end
 
