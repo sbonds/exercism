@@ -14,17 +14,17 @@ class HammingTest < Minitest::Test
   end
 
   def test_single_letter_different_strands
-    skip
+    # skip
     assert_equal 1, Hamming.compute('G', 'T')
   end
 
   def test_long_identical_strands
-    skip
+    # skip
     assert_equal 0, Hamming.compute('GGACTGAAATCTG', 'GGACTGAAATCTG')
   end
 
   def test_long_different_strands
-    skip
+    # skip
     assert_equal 9, Hamming.compute('GGACGGATTCTG', 'AGGACGGATTCT')
   end
 
