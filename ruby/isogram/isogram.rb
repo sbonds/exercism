@@ -45,6 +45,7 @@ class Isogram
     # I think .size and .length are interchangable: https://ruby-doc.org/core-2.5.3/Array.html#method-i-size
     # so I'll continue to go with length to keep the other changes clearer.
     # A good use for .uniq would be to compare the uniq word-chars-only length to the original. If they match, it's an isogram!
-    word.downcase.scan(/\w/).length == word.downcase.scan(/\w/).uniq.length
+    just_letters = word.downcase.scan(/\w/)
+    just_letters.length == just_letters.uniq.length
   end
 end
