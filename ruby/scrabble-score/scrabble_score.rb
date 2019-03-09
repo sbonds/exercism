@@ -45,9 +45,22 @@ class Scrabble
     }
     # I didn't see a way to do something like each_with_object to eliminate the need for a var outside the
     # main logic.
+    # 
+    # All tests pass except:
+    #   1) Error:
+    #   ScrabbleTest#test_convenient_scoring:
+    #   NoMethodError: undefined method `score' for Scrabble:Class
+    #   scrabble_score_test.rb:46:in `test_convenient_scoring'
+    # 
+    # Ah, they're not calling new() like I expected based on the first tests. Let me toss in a "convenient" class method.
     word_score = 0
     @word.each_char{ |letter| word_score += letter_score_for[letter] }
     return word_score
+  end
+
+  # The class method needs to create an object and then return the score
+  def self.score(provided_word)
+    new(provided_word).score
   end
 end
   
