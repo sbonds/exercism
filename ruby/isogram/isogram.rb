@@ -40,6 +40,11 @@ class Isogram
     # 
     # OK, that's what I would expect, so why is "jappingly" not working?
     # /facepalm... I had my logic completely reversed in my brain. Whoops! Another good case for test-driven development!
-    word.scan(/\w/) ? word.scan(/(\w).*\1/i).length.zero? : true
+    #
+    # Mentor kiru42 suggests looking into downcase+scan(/[a-z]/) and the .size and .uniq methods on an array.
+    # I think .size and .length are interchangable: https://ruby-doc.org/core-2.5.3/Array.html#method-i-size
+    # so I'll continue to go with length to keep the other changes clearer.
+    # A good use for .uniq would be to compare the uniq word-chars-only length to the original. If they match, it's an isogram!
+    word.downcase.scan(/\w/).length == word.downcase.scan(/\w/).uniq.length
   end
 end
