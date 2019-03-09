@@ -7,22 +7,22 @@ class ScrabbleTest < Minitest::Test
   end
 
   def test_whitespace_scores_zero
-    skip
+    # skip
     assert_equal 0, Scrabble.new(" \t\n").score
   end
 
   def test_nil_scores_zero
-    skip
+    # skip
     assert_equal 0, Scrabble.new(nil).score
   end
 
   def test_scores_very_short_word
-    skip
+    # skip
     assert_equal 1, Scrabble.new('a').score
   end
 
   def test_scores_other_very_short_word
-    skip
+    # skip
     assert_equal 4, Scrabble.new('f').score
   end
 

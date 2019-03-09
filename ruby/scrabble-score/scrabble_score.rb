@@ -7,7 +7,7 @@ The tests don't appear to cover the extended version with word and letter multip
 class Scrabble
   # "new" is used to create an instance that holds the specified word, perhaps with some filters on it
   def initialize(provided_word)
-    @word = provided_word.downcase.scan(/[a-z]/)
+    provided_word ? @word = provided_word.downcase.scan(/[a-z]/) : @word = ""
   end
 
   def score
