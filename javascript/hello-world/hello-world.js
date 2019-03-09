@@ -1,10 +1,8 @@
 //
-// This is only a SKELETON file for the 'Hello World' exercise. It's been provided as a
-// convenience to get you started writing code faster.
+// hello-world.js
+// Say hello, to anyone in the world who might want to listen.
 //
 
 export const hello = () => {
-  //
-  // YOUR CODE GOES HERE
-  //
+  return "Hello, World!";
 };
