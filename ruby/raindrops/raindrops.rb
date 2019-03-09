@@ -85,9 +85,11 @@ class Raindrops
     # solution:
     # 1) Build the appropriate string using a pre-defined string, appending to it as appropriate
     # 2) Test the string for emptiness afterwards and return the original number if empty
-    response = ""
+    #
+    # Mentor kiru42 suggested looking into ".join" with map. By starting out with .keys I limited my future flexibility.
     phrase = { 3 => "Pling", 5 => "Plang", 7 => "Plong" }
-    phrase.keys.sort.each{|divisor| number % divisor == 0 && response += phrase[divisor]}
+    # "number % divisor" would return the string "false" when using "&&" so I switched back to ternary
+    response = phrase.map{|divisor,sound| number % divisor == 0 ? sound : "" }.join
     response.empty? ? number.to_s : response
   end
 end
