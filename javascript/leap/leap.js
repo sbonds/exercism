@@ -8,6 +8,7 @@
 //
 // Year evenly divides by 4 AND (year is not evenly divisible by 100 OR year is divisible by 400)
 
+// https://babeljs.io/docs/en/learn#modules example of exported function
 export function isLeap(year) {
   return (( year % 4 == 0) && (( year % 100 != 0 ) || ( year % 400 == 0 )))
 }
