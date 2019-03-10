@@ -11,6 +11,8 @@ For now, define a fixed buffer than can handle a-z.
 */
 
 #define MAX_PHRASE_SIZE 26
+/* I should probably learn how to use gdb... */
+/* #define CHEEZY_DEBUGGING */
 
 bool is_isogram(const char phrase[]) 
 {
@@ -30,16 +32,25 @@ bool is_isogram(const char phrase[])
   }
 
   int phrase_length=strlen(phrase);
+#ifdef CHEEZY_DEBUGGING
   printf("length: %i\n", phrase_length);
+#endif
   for(i=0;i<phrase_length;i++)
   {
+#ifdef CHEEZY_DEBUGGING
     printf(" %c ", phrase[i]);
+#endif
     int char_code=(int) tolower(phrase[i]) - (int)'a';
+    /* Non-alphabetics are skipped */
+    if (char_code < 0 || char_code > MAX_PHRASE_SIZE) {
+      continue;
+    }
+#ifdef CHEEZY_DEBUGGING
     printf("(%i) ", char_code);
+#endif
     if (letter_seen[char_code] == true) {
       return false;
     }
-    /* TODO: put in a bounds check to prevent buffer overflow */
     letter_seen[char_code] = true;
   }
   return true;
