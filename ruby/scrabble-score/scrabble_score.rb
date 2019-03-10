@@ -8,7 +8,12 @@ class Scrabble
   # "new" is used to create an instance that holds the specified word, perhaps with some filters on it
   def initialize(provided_word)
     # Filter the word to remove non-Scrabble-compliant characters.
-    provided_word ? @word = provided_word.downcase.scan(/[a-z]/).join : @word = ""
+    @word = just_letters(provided_word) || ""
+  end
+
+  def just_letters(dirty_word)
+    # The ternary handles Nil, which causes an exception if used with downcase
+    dirty_word ? dirty_word.downcase.scan(/[a-z]/).join : ""
   end
 
   def score
