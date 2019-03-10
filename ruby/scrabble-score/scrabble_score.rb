@@ -4,21 +4,11 @@ Given a word, return a number that describes how it would score in the game Scra
 The tests don't appear to cover the extended version with word and letter multipliers, so skip that for now.
 =end
 
-class Scrabble
-  # "new" is used to create an instance that holds the specified word, perhaps with some filters on it
-  def initialize(provided_word)
-    # Filter the word to remove non-Scrabble-compliant characters. Also handle provided_word being falsey (e.g. nil)
-    @word = just_letters(provided_word || "")
-  end
-
-  def just_letters(dirty_word)
-    dirty_word.downcase.scan(/[a-z]/).join
-  end
-
+class String
   # The word should be normalized so we can index by lowercase letters only. Scrable scores don't really follow
   # much in the way of patterns, so a lookup for each letter seems justified. The other way to do this would be
   # to index by score with a list of letters matching that score. That seems to make the lookup more difficult.
-  LETTER_SCORE_FOR = {
+  PER_LETTER_SCORE = {
     'a' => 1,
     'b' => 3,
     'c' => 3,
@@ -47,6 +37,23 @@ class Scrabble
     'z' => 10,
   }.freeze
 
+  # This lets us use &:letter_score as a shortcut
+  def per_letter_score
+    PER_LETTER_SCORE[self]
+  end
+end
+
+class Scrabble
+  # "new" is used to create an instance that holds the specified word, perhaps with some filters on it
+  def initialize(provided_word)
+    # Filter the word to remove non-Scrabble-compliant characters. Also handle provided_word being falsey (e.g. nil)
+    @word = just_letters(provided_word || "")
+  end
+
+  def just_letters(dirty_word)
+    dirty_word.downcase.scan(/[a-z]/).join
+  end
+
   def score
   
     # I didn't see a way to do something like each_with_object to eliminate the need for a var outside the
@@ -62,7 +69,7 @@ class Scrabble
     #
     # Mentor ajoshguy suggested a much better method that avoids the use of that var outside the main logic.
     # "Sum" seems like it would have been easy to find, but *sigh* that's why the mentors are here!
-    @word.each_char.sum{ |letter| LETTER_SCORE_FOR[letter] }
+    @word.each_char.sum(&:per_letter_score)
   end
 
   # The class method needs to create an object and then return the score
