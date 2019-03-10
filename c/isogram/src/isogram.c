@@ -14,6 +14,11 @@ For now, define a fixed buffer than can handle a-z.
 
 bool is_isogram(const char phrase[]) 
 {
+  /* A NULL phrase is always not an isogram */
+  if (phrase == NULL) {
+    return false;
+  }
+  
   int i;
   /* Index used: a=0, b=1, c=2, ... z=26
     Also initialize to "false"
