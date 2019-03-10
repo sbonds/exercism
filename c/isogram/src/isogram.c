@@ -18,7 +18,7 @@ bool is_isogram(const char phrase[])
   if (phrase == NULL) {
     return false;
   }
-  
+
   int i;
   /* Index used: a=0, b=1, c=2, ... z=26
     Also initialize to "false"
@@ -30,11 +30,13 @@ bool is_isogram(const char phrase[])
   }
 
   int phrase_length=strlen(phrase);
+  printf("length: %i\n", phrase_length);
   for(i=0;i<phrase_length;i++)
   {
-    printf("%c", phrase[i]);
-    int char_code=(int) tolower(phrase[i]);
+    printf(" %c ", phrase[i]);
+    int char_code=(int) tolower(phrase[i]) - (int)'a';
     /* TODO: put in a bounds check to prevent buffer overflow */
+    printf("(%i) ", char_code);
     if (letter_seen[char_code] == true) {
       return false;
     }

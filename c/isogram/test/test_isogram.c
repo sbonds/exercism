@@ -22,7 +22,6 @@ void test_null(void)
 
 void test_lower_case_only(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_TRUE(is_isogram("isogram"));
 }
 
