@@ -17,7 +17,6 @@ void test_empty_string(void)
 
 void test_null(void)
 {
-   TEST_IGNORE();               // delete this line to run test
    TEST_ASSERT_FALSE(is_isogram(NULL));
 }
 
