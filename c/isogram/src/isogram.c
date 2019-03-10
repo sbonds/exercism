@@ -35,12 +35,12 @@ bool is_isogram(const char phrase[])
   {
     printf(" %c ", phrase[i]);
     int char_code=(int) tolower(phrase[i]) - (int)'a';
-    /* TODO: put in a bounds check to prevent buffer overflow */
     printf("(%i) ", char_code);
     if (letter_seen[char_code] == true) {
       return false;
     }
+    /* TODO: put in a bounds check to prevent buffer overflow */
+    letter_seen[char_code] = true;
   }
-
   return true;
 }

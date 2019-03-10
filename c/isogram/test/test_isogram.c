@@ -27,7 +27,6 @@ void test_lower_case_only(void)
 
 void test_duplicated_letter(void)
 {
-   TEST_IGNORE();
    TEST_ASSERT_FALSE(is_isogram("eleven"));
 }
 
