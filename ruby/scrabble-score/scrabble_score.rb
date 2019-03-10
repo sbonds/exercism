@@ -60,9 +60,10 @@ class Scrabble
     #   scrabble_score_test.rb:46:in `test_convenient_scoring'
     # 
     # Ah, they're not calling new() like I expected based on the first tests. Let me toss in a "convenient" class method.
-    word_score = 0
-    @word.each_char{ |letter| word_score += LETTER_SCORE_FOR[letter] }
-    return word_score
+    #
+    # Mentor ajoshguy suggested a much better method that avoids the use of that var outside the main logic.
+    # "Sum" seems like it would have been easy to find, but *sigh* that's why the mentors are here!
+    @word.each_char.sum{ |letter| LETTER_SCORE_FOR[letter] }
   end
 
   # The class method needs to create an object and then return the score
