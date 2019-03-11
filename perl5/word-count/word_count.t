@@ -7,7 +7,6 @@ use utf8;
 use Test::More;
 use FindBin qw($Bin);
 use lib $Bin, "$Bin/local/lib/perl5";
-use Data::Dumper;
 
 my $module = 'Phrase';
 
@@ -41,21 +40,5 @@ my $sub = $module . '::word_count';
 
 foreach my $c (@cases) {
     no strict 'refs';
-    #print STDERR "Expecting: " . Data::Dumper->Dump([\$c->[1]],[qw($c->[1])]);
-    #my $arg_passed = $c->[0];
-    #print STDERR "Arg passed: '$arg_passed'\n";
-    #my $phrase = new Phrase;
-    #my $result = $phrase->word_count($arg_passed);
-    #print STDERR "Result: $result\n";
-    #print STDERR "Got: " . Data::Dumper->Dump([\Phrase::word_count->($c->[0])],["word_count($c->[0])"]);
-    #print STDERR "Got: " . Data::Dumper->Dump([\$result],[qw($result)]);
-    #rint STDERR "Running is_deeply $sub->($c->[0]), $c->[1], $c->[2]\n";
-    #print STDERR Data::Dumper->Dump([\$c->[1]],[qw($c->[1])]);
-    #
-    # https://stackoverflow.com/questions/30258888/converting-datatypes-for-failing-test-function-in-perl
-    # Suggests the anonymous array workaround for "is_deeply() takes two or three args, you gave 8." (number varies)
-    # 
-    is_deeply [$sub->($c->[0])], [$c->[1]], [$c->[2]];
+    is_deeply $sub->($c->[0]), $c->[1], $c->[2];
 }
-
-
