@@ -4,10 +4,13 @@ Given a word, return a number that describes how it would score in the game Scra
 The tests don't appear to cover the extended version with word and letter multipliers, so skip that for now.
 =end
 
-class String
-  # The word should be normalized so we can index by lowercase letters only. Scrable scores don't really follow
-  # much in the way of patterns, so a lookup for each letter seems justified. The other way to do this would be
-  # to index by score with a list of letters matching that score. That seems to make the lookup more difficult.
+class Scrabble
+  # "new" is used to create an instance that holds the specified word, perhaps with some filters on it
+  def initialize(provided_word)
+    # Handle provided_word being falsey (e.g. nil) but let the letters method handle the rest of the filtering.
+    @word = provided_word || ""
+  end
+
   PER_LETTER_SCORE = {
     'a' => 1,
     'b' => 3,
@@ -37,25 +40,11 @@ class String
     'z' => 10,
   }.freeze
 
-  # This lets us use &:letter_score as a shortcut
-  def per_letter_score
-    PER_LETTER_SCORE[self]
-  end
-end
-
-class Scrabble
-  # "new" is used to create an instance that holds the specified word, perhaps with some filters on it
-  def initialize(provided_word)
-    # Filter the word to remove non-Scrabble-compliant characters. Also handle provided_word being falsey (e.g. nil)
-    @word = just_letters(provided_word || "")
-  end
-
-  def just_letters(dirty_word)
-    dirty_word.downcase.scan(/[a-z]/).join
+  def just_letters
+    @word.downcase.scan(/[a-z]/).join
   end
 
   def score
-  
     # I didn't see a way to do something like each_with_object to eliminate the need for a var outside the
     # main logic.
     # 
@@ -69,7 +58,28 @@ class Scrabble
     #
     # Mentor ajoshguy suggested a much better method that avoids the use of that var outside the main logic.
     # "Sum" seems like it would have been easy to find, but *sigh* that's why the mentors are here!
-    @word.each_char.sum(&:per_letter_score)
+    #
+    # He also showed me the &PER_LETTER_SCORE trick, not to be confused with the requires-a-horrible-workaround &: trick. :-)
+    # https://skorks.com/2013/04/ruby-ampersand-parameter-demystified/
+    # "If the parameter is not a Proc, Ruby will try to convert it into one (by calling to_proc on it) before associating it with the method as its block."
+    # ... not sure what that means just yet. What is a Proc?
+    # https://ruby-doc.org/core-2.5.3/Proc.html
+    #
+    # You know... I was thinking earlier that there wasn't enough IRB in this exercise. I suspected it was coming! :-)
+    # What do various objects look like when hit with .to_proc?
+    #   NoMethodError (undefined method `to_proc' for "This is a stringy string":String)
+    #   NoMethodError (undefined method `to_proc' for [1, 2, 3, 4, 5]:Array)
+    #   >> {'a' => 1, 'b' => 2}.to_proc
+    #   => #<Proc:0x00000000028c7060>
+    # So strings and arrays can't be Procified, but hashes can.
+    # https://stackoverflow.com/questions/38943466/ruby-how-to-use-hashto-proc
+    # Oh, like this!
+    #   >> sample_hash={'a' => 1, 'b' => 2, 'c' => 3}
+    #   => {"a"=>1, "b"=>2, "c"=>3}
+    #   >> ['b', 'a'].map(&sample_hash)
+    #   => [2, 1]
+    # That *is* a pretty neat trick!
+    just_letters.each_char.sum(&PER_LETTER_SCORE)
   end
 
   # The class method needs to create an object and then return the score
