@@ -1,13 +1,12 @@
 /*Package diffsquares finds the difference between the square of the sum of the first
-'n' natural numbers and the sum of the squares of the same numbers.
-
-Based on the testing it looks like we need to implement all of these methods:
- SquareOfSum(n)
- SumOfSquares(n)
- Difference(n)
-
-*/
+'n' natural numbers and the sum of the squares of the same numbers.*/
 package diffsquares
+
+/*Based on the testing it looks like we need to implement all of these methods:
+SquareOfSum(n)
+SumOfSquares(n)
+Difference(n)
+*/
 
 /*SquareOfSum returns the integer value of the sum of the first 'n' numbers, squared. */
 func SquareOfSum(n int) int {
