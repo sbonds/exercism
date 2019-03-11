@@ -6,6 +6,7 @@ var tests = []struct{ n, sqOfSum, sumOfSq int }{
 	{5, 225, 55},
 	{10, 3025, 385},
 	{100, 25502500, 338350},
+	{-10, 0, 0},
 }
 
 func TestSquareOfSum(t *testing.T) {
