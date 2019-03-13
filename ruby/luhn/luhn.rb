@@ -24,8 +24,12 @@ class Luhn
     number * 2 > 9 ? number*2 - 9: number*2
   end
 
+  def reversed_digits_only
+    @string_of_numbers.reverse.scan(/\d/).map(&:to_i).map
+  end
+
   def valid?
     return false unless early_checks_fine?
-    @string_of_numbers.reverse.scan(/\d/).map(&:to_i).map.with_index{ |number, index| index % 2 == 1 ? handle_over_nine(number) : number}.sum % 10 == 0
+    reversed_digits_only.with_index{ |number, index| index % 2 == 1 ? handle_over_nine(number) : number}.sum % 10 == 0
   end
 end
