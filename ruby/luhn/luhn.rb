@@ -16,8 +16,9 @@ class Luhn
     @string_of_numbers.match?(/^[\d\s]+$/)
   end
 
-  def handle_over_nine(number)
-    number * 2 > 9 ? number*2 - 9: number*2
+  def double_with_overflow(number)
+    doubled = number * 2
+    doubled > 9 ? doubled - 9: doubled
   end
 
   def reversed_digits_only
@@ -26,6 +27,6 @@ class Luhn
 
   def valid?
     return false unless ( long_enough? && only_numbers? )
-    reversed_digits_only.with_index{ |number, index| index % 2 == 1 ? handle_over_nine(number) : number}.sum % 10 == 0
+    reversed_digits_only.with_index{ |number, index| index % 2 == 1 ? double_with_overflow(number) : number}.sum % 10 == 0
   end
 end
