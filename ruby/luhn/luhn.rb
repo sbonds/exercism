@@ -7,6 +7,7 @@ class Luhn
 
   # https://github.com/rubocop-hq/ruby-style-guide#consistent-classes
   def initialize(string_of_numbers)
+    # TODO: extract only digits during initialization
     @string_of_numbers = string_of_numbers
   end
 
