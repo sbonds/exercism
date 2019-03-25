@@ -7,8 +7,7 @@ class Luhn
 
   # https://github.com/rubocop-hq/ruby-style-guide#consistent-classes
   def initialize(string_of_numbers)
-    # TODO: extract only digits during initialization
-    @string_of_numbers = string_of_numbers
+    @string_of_numbers = string_of_numbers.delete(" ")
   end
 
   def valid?
@@ -23,7 +22,7 @@ class Luhn
   end
 
   def valid_format?
-    string_of_numbers.match?(/^[\d\s]+$/) && string_of_numbers.scan(/\d/).length > 1
+    string_of_numbers.match?(/^\d+$/) && string_of_numbers.length > 1
   end
 
   def valid_luhn_sum?
