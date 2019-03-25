@@ -15,6 +15,12 @@ class Luhn
     (doubled_digit > 9 ? doubled_digit - 9: doubled_digit) + two_digits[0]
   end
 
+  def valid?
+    valid_format? && valid_luhn_sum?
+  end
+
+  private 
+
   def valid_format?
     string_of_numbers.match?(/^[\d\s]+$/) && string_of_numbers.scan(/\d/).length > 1
   end
@@ -23,7 +29,4 @@ class Luhn
     string_of_numbers.reverse.scan(/\d/).map(&:to_i).each_slice(2).sum{ |up_to_two_digits| double_with_overflow(up_to_two_digits)} % 10 == 0
   end
 
-  def valid?
-    valid_format? && valid_luhn_sum?
-  end
 end
