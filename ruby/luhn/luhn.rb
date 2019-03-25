@@ -1,13 +1,14 @@
 class Luhn
   attr_reader :string_of_numbers
-
-  def initialize(string_of_numbers)
-    @string_of_numbers = string_of_numbers
-  end
-
+  
   def self.valid?(string_of_numbers)
     luhn = Luhn.new(string_of_numbers)
     luhn.valid?
+  end
+
+  # https://github.com/rubocop-hq/ruby-style-guide#consistent-classes
+  def initialize(string_of_numbers)
+    @string_of_numbers = string_of_numbers
   end
 
   def double_with_overflow(two_digits)
