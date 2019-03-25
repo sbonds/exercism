@@ -24,11 +24,6 @@ class Luhn
   end
 
   def valid?
-    return false unless valid_format?
-    # It seems like there should be a way to use &: or & to shorten that map{ || } block, but I'm not finding how to do that.
-    # Would I really need to extend Array to make that work?
-    #  map(&:double_with_overflow) gives:
-    #   NoMethodError: undefined method `double_with_overflow' for [9, 5]:Array
-    valid_luhn_sum?
+    valid_format? && valid_luhn_sum?
   end
 end
