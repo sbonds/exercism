@@ -2,8 +2,7 @@ class Luhn
   attr_reader :string_of_numbers
   
   def self.valid?(string_of_numbers)
-    luhn = Luhn.new(string_of_numbers)
-    luhn.valid?
+    Luhn.new(string_of_numbers).valid?
   end
 
   # https://github.com/rubocop-hq/ruby-style-guide#consistent-classes
