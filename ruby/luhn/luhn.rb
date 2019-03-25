@@ -20,7 +20,7 @@ class Luhn
   end
 
   def valid_luhn_sum?
-    string_of_numbers.reverse.scan(/\d/).map(&:to_i).map.each_slice(2).sum{ |up_to_two_digits| double_with_overflow(up_to_two_digits)} % 10 == 0
+    string_of_numbers.reverse.scan(/\d/).map(&:to_i).each_slice(2).sum{ |up_to_two_digits| double_with_overflow(up_to_two_digits)} % 10 == 0
   end
 
   def valid?
