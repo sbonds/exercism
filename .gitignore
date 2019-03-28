@@ -1,5 +1,6 @@
 node_modules
 tests.out
+package-lock.json
 
 ##########################################################################################
 # https://github.com/github/gitignore/blob/master/Python.gitignore
