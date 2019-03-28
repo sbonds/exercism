@@ -17,26 +17,23 @@ class Luhn
 
   private 
 
-  # This 'utility function' makes no use of class variables so it could be located anywhere.
-  # For example, it could be moved to a new class. However, since it's a private method and
-  # adding a new class would be more complex than leaving this short function in place,
-  # this utility function seems the lesser of the two evils.
-  def double_with_overflow(two_digits)
-    doubled_digit = (two_digits[1] || 0) * 2
-    (doubled_digit < 10 ? doubled_digit : doubled_digit - 9) + two_digits[0]
-  end
-
   def valid_format?
     string_of_numbers.match?(/^\d+$/) && string_of_numbers.length > 1
   end
 
   def luhn_sum
-    # It seems like sum { |m| method(m) } should be able to be coerced into sum { &:method } somehow.
-    # There seems to be some aspect of .to_proc which I'm missing that might enable this.
-    string_of_numbers.reverse.chars.map(&:to_i).each_slice(2).sum{ |up_to_two_digits| double_with_overflow(up_to_two_digits)}
+    string_of_numbers.reverse.chars.map(&:to_i).each_slice(2).sum(&:double_with_overflow)
   end
 
   def valid_luhn_sum?
      luhn_sum % 10 == 0
+  end
+end
+
+# Add the 'utility function' to the class of its argument to allow the &:<name> idiom to work
+class Array
+  def double_with_overflow
+    doubled_digit = (self[1] || 0) * 2
+    (doubled_digit < 10 ? doubled_digit : doubled_digit - 9) + self[0]
   end
 end
