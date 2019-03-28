@@ -2,7 +2,6 @@
 package luhn
 
 import (
-	"fmt"
 	"strings"
 	"unicode"
 )
@@ -59,22 +58,14 @@ func RemoveSpaces(stringWithSpaces string) string {
 /*ChecksumTotal is used internally to calculate the Luhn checksum of the given series of
 digits. */
 func ChecksumTotal(numbers []int) int {
-	fmt.Println("numbers: ", numbers)
 	total := 0
-	doubledNumbers := make([]int, len(numbers))
-
 	for i, offsetFromEnd := len(numbers)-1, 0; i >= 0; i, offsetFromEnd = i-1, offsetFromEnd+1 {
-		fmt.Println("  offsetFromEnd: ", offsetFromEnd, " i: ", i, " numbers[i]: ", numbers[i])
 		if offsetFromEnd%2 == 1 {
 			total = total + DoubleWithOverflow(numbers[i])
-			doubledNumbers[i] = DoubleWithOverflow(numbers[i])
 		} else {
 			total = total + numbers[i]
-			doubledNumbers[i] = numbers[i]
 		}
-
 	}
-	fmt.Println("doubledNumbers: ", doubledNumbers, " Total: ", total)
 	return total
 }
 
@@ -87,3 +78,16 @@ func DoubleWithOverflow(number int) int {
 		return number * 2
 	}
 }
+
+/* Naive implementation benchmark:
+
+$ go test -v --bench . --benchmem
+=== RUN   TestValid
+--- PASS: TestValid (0.00s)
+goos: windows
+goarch: amd64
+BenchmarkValid-4         2000000               518 ns/op             224 B/op         4 allocs/op
+PASS
+ok      _/C_/Users/sbonds/Exercism/go/luhn      2.156s
+
+*/
