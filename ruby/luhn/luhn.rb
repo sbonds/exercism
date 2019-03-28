@@ -18,7 +18,7 @@ class Luhn
 
   def double_with_overflow(two_digits)
     doubled_digit = (two_digits[1] || 0) * 2
-    (doubled_digit > 9 ? doubled_digit - 9: doubled_digit) + two_digits[0]
+    (doubled_digit < 10 ? doubled_digit : doubled_digit - 9) + two_digits[0]
   end
 
   def valid_format?
