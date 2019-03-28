@@ -1,3 +1,4 @@
+# Check whether a string of numbers follows the Luhn self-validation checksum.
 class Luhn
   attr_reader :string_of_numbers
   
