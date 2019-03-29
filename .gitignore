@@ -1,6 +1,8 @@
 node_modules
 tests.out
 package-lock.json
+.lock
+.precomp
 
 ##########################################################################################
 # https://github.com/github/gitignore/blob/master/Python.gitignore
