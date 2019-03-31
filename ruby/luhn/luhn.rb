@@ -1,7 +1,7 @@
 # Check whether a string of numbers follows the Luhn self-validation checksum.
 class Luhn
   attr_reader :string_of_numbers
-  
+
   def self.valid?(string_of_numbers)
     Luhn.new(string_of_numbers).valid?
   end
@@ -15,7 +15,7 @@ class Luhn
     valid_format? && valid_luhn_sum?
   end
 
-  private 
+  private
 
   # This 'utility function' makes no use of class variables so it could be located anywhere.
   # For example, it could be moved to a new class. However, since it's a private method and
@@ -33,7 +33,9 @@ class Luhn
   def luhn_sum
     # It seems like sum { |m| method(m) } should be able to be coerced into sum { &:method } somehow.
     # There seems to be some aspect of .to_proc which I'm missing that might enable this.
-    string_of_numbers.reverse.chars.map(&:to_i).each_slice(2).sum{ |first_digit, second_digit| double_with_overflow(second_digit) + first_digit}
+    string_of_numbers.reverse.chars.map(&:to_i).each_slice(2).sum do |first_digit, second_digit| 
+      double_with_overflow(second_digit) + first_digit
+    end
   end
 
   def valid_luhn_sum?
