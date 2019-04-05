@@ -16,9 +16,8 @@ class Luhn
 
   private
 
-  def double_with_overflow(digit)
-    doubled_digit = (digit || 0) * 2
-    doubled_digit < 10 ? doubled_digit : doubled_digit - 9
+  def valid_luhn_sum?
+    luhn_sum % 10 == 0
   end
 
   def valid_format?
@@ -31,7 +30,8 @@ class Luhn
     end
   end
 
-  def valid_luhn_sum?
-    luhn_sum % 10 == 0
+  def double_with_overflow(digit)
+    doubled_digit = (digit || 0) * 2
+    doubled_digit < 10 ? doubled_digit : doubled_digit - 9
   end
 end
