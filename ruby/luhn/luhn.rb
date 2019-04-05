@@ -31,7 +31,6 @@ class Luhn
   end
 
   def double_with_overflow(digit)
-    doubled_digit = (digit || 0) * 2
-    doubled_digit < 10 ? doubled_digit : doubled_digit - 9
+    ( (digit || 0) * 2 ).digits.sum
   end
 end
