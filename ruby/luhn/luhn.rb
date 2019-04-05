@@ -3,7 +3,7 @@ class Luhn
   attr_reader :string_of_numbers
 
   def self.valid?(string_of_numbers)
-    Luhn.new(string_of_numbers).valid?
+    new(string_of_numbers).valid?
   end
 
   def initialize(string_of_numbers)
