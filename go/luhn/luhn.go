@@ -25,7 +25,7 @@ method in the library-based Go exercises.
 
 /*Valid returns true if the digits in the input make a valid Luhn checksum, false otherwise. */
 func Valid(sequenceOfNumbers string) bool {
-	spaceFreeSequenceOfNumbers := RemoveSpaces(sequenceOfNumbers)
+	spaceFreeSequenceOfNumbers := removeSpaces(sequenceOfNumbers)
 	if len(spaceFreeSequenceOfNumbers) <= 1 {
 		return false
 	}
@@ -44,24 +44,25 @@ func Valid(sequenceOfNumbers string) bool {
 	}
 
 	/* Now that we've tossed out the junk we need to actually do some work. :-) */
-	return ChecksumTotal(numbers)%10 == 0
+	return checksumTotal(numbers)%10 == 0
 }
 
-/*RemoveSpaces is used internally to remove any spaces from the string passed in.
+/*removeSpaces is used internally to remove any spaces from the string passed in.
 It could also have been 'unexported' based on golint, but that seemed to be surprisingly
 unusual and/or difficult to do. */
-func RemoveSpaces(stringWithSpaces string) string {
-	// Split on spaces and join on nothing. It's simple to read, but may not benchmark well.
-	return strings.Join(strings.Fields(stringWithSpaces), "")
+func removeSpaces(stringWithSpaces string) string {
+	// First version: Split on spaces and join on nothing. It's simple to read, but may not benchmark well.
+	// Using ReplaceAll is more straightforward but won't strip non-space whitespace characters
+	return strings.Replace(stringWithSpaces, " ", "", -1)
 }
 
-/*ChecksumTotal is used internally to calculate the Luhn checksum of the given series of
+/*checksumTotal is used internally to calculate the Luhn checksum of the given series of
 digits. */
-func ChecksumTotal(numbers []int) int {
+func checksumTotal(numbers []int) int {
 	total := 0
 	for i, offsetFromEnd := len(numbers)-1, 0; i >= 0; i, offsetFromEnd = i-1, offsetFromEnd+1 {
 		if offsetFromEnd%2 == 1 {
-			total = total + DoubleWithOverflow(numbers[i])
+			total = total + doubleWithOverflow(numbers[i])
 		} else {
 			total = total + numbers[i]
 		}
@@ -69,13 +70,14 @@ func ChecksumTotal(numbers []int) int {
 	return total
 }
 
-/*DoubleWithOverflow doubles the number given and if it's above 9, subtracts 9 from it to keep
+/*doubleWithOverflow doubles the number given and if it's above 9, subtracts 9 from it to keep
 it to a single digit.*/
-func DoubleWithOverflow(number int) int {
-	if number*2 > 9 {
-		return (number * 2) - 9
+func doubleWithOverflow(number int) int {
+	doubled := number * 2
+	if doubled > 9 {
+		return (doubled) - 9
 	} else {
-		return number * 2
+		return doubled
 	}
 }
 
@@ -89,5 +91,18 @@ goarch: amd64
 BenchmarkValid-4         2000000               518 ns/op             224 B/op         4 allocs/op
 PASS
 ok      _/C_/Users/sbonds/Exercism/go/luhn      2.156s
+
+*/
+
+/* Second iteration benchmark:
+
+ go test -v --bench . --benchmem
+=== RUN   TestValid
+--- PASS: TestValid (0.00s)
+goos: windows
+goarch: amd64
+BenchmarkValid-4         5000000               271 ns/op             160 B/op         3 allocs/op
+PASS
+ok      _/C_/Users/sbonds/Exercism/go/luhn      2.035s
 
 */
