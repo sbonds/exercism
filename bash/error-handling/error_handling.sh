@@ -9,7 +9,7 @@ set -o errexit
 set -o nounset
 
 main() {
-  greetee="$1"
+  greetee=${1:-}
 
   # If there's nobody to greet, print appropriate error
   if [ -z "$greetee" ]; then

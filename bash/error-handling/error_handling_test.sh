@@ -9,7 +9,7 @@
 }
 
 @test "one long argument" {
-  skip
+  #skip
   run bash error_handling.sh "Alice and Bob"
 
   [ "$status" -eq 0 ]
@@ -17,14 +17,14 @@
 }
 
 @test "incorrect arguments" {
-  skip
+  #skip
   run bash error_handling.sh Alice Bob
 
   [ "$status" -ne 0 ]
 }
 
 @test "print usage banner with no value given" {
-  skip
+  #skip
   run bash error_handling.sh
 
   [ "$status" -eq 1 ]
