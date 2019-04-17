@@ -16,7 +16,7 @@ main() {
   sounds_made=""
 
   # If there are extra arguments, print appropriate error (optional)
-  if [[ "$#" -ne 1 ]]; then
+  if (( $# != 1 )); then
     echo "Usage: ./$0 <number>"
     return 1
   fi
