@@ -8,28 +8,28 @@
 }
 
 @test 'single letter identical strands' {
-  skip
+  #skip
   run bash hamming.sh 'A' 'A'
   [ "$status" -eq 0 ]
   [ "$output" -eq 0 ]
 }
 
 @test 'single letter different strands' {
-  skip
+  #skip
   run bash hamming.sh 'G' 'T'
   [ "$status" -eq 0 ]
   [ "$output" -eq 1 ]
 }
 
 @test 'long identical strands' {
-  skip
+  #skip
   run bash hamming.sh 'GGACTGAAATCTG' 'GGACTGAAATCTG'
   [ "$status" -eq 0 ]
   [ "$output" -eq 0 ]
 }
 
 @test 'long different strands' {
-  skip
+  #skip
   run bash hamming.sh 'GGACGGATTCTG' 'AGGACGGATTCT'
   [ "$status" -eq 0 ]
   [ "$output" -eq 9 ]
