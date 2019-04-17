@@ -13,7 +13,7 @@ set -o nounset
 
 main() {
   number=${1:-}
-  made_sound=0
+  sounds_made=""
 
   # If there are extra arguments, print appropriate error (optional)
   if [ "$#" -ne 1 ]; then
@@ -24,26 +24,22 @@ main() {
   # Make our sounds and note that at least one sound was made
   # so we can determine if we instead need to just print the number
   if [ $(($number % 3)) -eq 0 ]; then
-    echo -n "Pling"
-    made_sound=1
+    sounds_made="Pling"
   fi
 
   if [ $(($number % 5)) -eq 0 ]; then
-    echo -n "Plang"
-    made_sound=1
+    sounds_made="${sounds_made}Plang"
   fi
 
   if [ $(($number % 7)) -eq 0 ]; then
-    echo -n "Plong"
-    made_sound=1
+    sounds_made="${sounds_made}Plong"
   fi
 
-  if [ "$made_sound" -eq 0 ]; then
-    echo -n $number
+  if [ -z "$sounds_made" ]; then
+    echo $number
+  else
+    echo $sounds_made
   fi
-
-  # Print one trailing newline since none of the above had one
-  echo
 
   exit 0
 }
