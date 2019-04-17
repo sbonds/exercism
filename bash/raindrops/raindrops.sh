@@ -36,9 +36,9 @@ main() {
   fi
 
   if [[ -z "$sounds_made" ]]; then
-    echo $number
+    echo "$number"
   else
-    echo $sounds_made
+    echo "$sounds_made"
   fi
 
   return 0
