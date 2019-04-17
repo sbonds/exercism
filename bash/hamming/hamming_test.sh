@@ -36,21 +36,21 @@
 }
 
 @test 'disallow first strand longer' {
-  skip
+  #skip
   run bash hamming.sh 'AATG' 'AAA'
   [ "$status" -eq 1 ]
   [ "$output" == 'left and right strands must be of equal length' ]
 }
 
 @test 'disallow second strand longer' {
-  skip
+  #skip
   run bash hamming.sh 'ATA' 'AGTG'
   [ "$status" -eq 1 ]
   [ "$output" == 'left and right strands must be of equal length' ]
 }
 
 @test "no input" {
-  skip
+  #skip
   run bash hamming.sh
   [ "$status" -eq 1 ]
   [ "$output" == 'Usage: hamming.sh <string1> <string2>' ]

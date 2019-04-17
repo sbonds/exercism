@@ -9,12 +9,17 @@ set -o errexit
 set -o nounset
 
 main() {
-  strand1=${1:-}
-  strand2=${2:-}
+  strandL=${1:-}
+  strandR=${2:-}
 
   # If there are extra arguments, print appropriate error (optional)
   if (( $# != 2 )); then
-    echo "Usage: ./$0 <strand 1> <strand 2>"
+    echo "Usage: $0 <string1> <string2>"
+    return 1
+  fi
+
+  if (( ${#strandL} != ${#strandR} )); then
+    echo "left and right strands must be of equal length"
     return 1
   fi
 
