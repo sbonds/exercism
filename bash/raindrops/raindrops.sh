@@ -16,26 +16,26 @@ main() {
   sounds_made=""
 
   # If there are extra arguments, print appropriate error (optional)
-  if [ "$#" -ne 1 ]; then
+  if [[ "$#" -ne 1 ]]; then
     echo "Usage: ./$0 <number>"
     return 1
   fi
 
   # Make our sounds and note that at least one sound was made
   # so we can determine if we instead need to just print the number
-  if [ $(($number % 3)) -eq 0 ]; then
+  if (( $number % 3 == 0 )); then
     sounds_made="Pling"
   fi
 
-  if [ $(($number % 5)) -eq 0 ]; then
+  if (( $number % 5 == 0 )); then
     sounds_made="${sounds_made}Plang"
   fi
 
-  if [ $(($number % 7)) -eq 0 ]; then
+  if (( $number % 7 == 0 )); then
     sounds_made="${sounds_made}Plong"
   fi
 
-  if [ -z "$sounds_made" ]; then
+  if [[ -z "$sounds_made" ]]; then
     echo $number
   else
     echo $sounds_made
