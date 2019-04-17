@@ -23,15 +23,15 @@ main() {
 
   # Make our sounds and note that at least one sound was made
   # so we can determine if we instead need to just print the number
-  if (( $number % 3 == 0 )); then
+  if (( number % 3 == 0 )); then
     sounds_made="Pling"
   fi
 
-  if (( $number % 5 == 0 )); then
+  if (( number % 5 == 0 )); then
     sounds_made="${sounds_made}Plang"
   fi
 
-  if (( $number % 7 == 0 )); then
+  if (( number % 7 == 0 )); then
     sounds_made="${sounds_made}Plong"
   fi
 
