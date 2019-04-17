@@ -18,7 +18,7 @@ main() {
   # If there are extra arguments, print appropriate error (optional)
   if [ "$#" -ne 1 ]; then
     echo "Usage: ./$0 <number>"
-    exit 1
+    return 1
   fi
 
   # Make our sounds and note that at least one sound was made
@@ -41,7 +41,7 @@ main() {
     echo $sounds_made
   fi
 
-  exit 0
+  return 0
 }
 
 main "$@"
