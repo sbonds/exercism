@@ -4,10 +4,9 @@ set -o errexit
 set -o nounset
 
 main() {
-
-  # If there are insufficient arguments, print appropriate error (optional)
-  if (( $# < 1 )); then
-    echo "Usage: $0 <string1> [<string2>] ..."
+  # If there are too many arguments, print appropriate error (optional)
+  if (( $# != 1 )); then
+    echo "Usage: $0 '<string>'"
     return 1
   fi
 
