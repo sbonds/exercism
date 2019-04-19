@@ -22,7 +22,7 @@ main() {
     initialism="${initialism}${word:0:1}"
   done
 
-  echo "$initialism"
+  echo "${initialism^^}"
 
   return 0
 }
