@@ -17,7 +17,9 @@ main() {
   initialism=""
 
   # Using simple shell expansion seems to be an easy method to
-  # follow.
+  # follow. Well, until punctuation appeared... to fix that, IFS should
+  # split on all expected punctuation characters.
+  IFS="${IFS}-"
   for word in $1; do
     initialism="${initialism}${word:0:1}"
   done
