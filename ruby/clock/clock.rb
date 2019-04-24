@@ -36,5 +36,6 @@ class Clock
 
   def normalize_minutes
     @minutes_past_midnight += 24 * 60 if @minutes_past_midnight < 0
+    @minutes_past_midnight = @minutes_past_midnight % (24 * 60)
   end
 end
