@@ -23,7 +23,7 @@ class Clock
   end
 
   def to_s
-    normalize_minutes
+    @minutes_past_midnight = normalize_minutes(minutes_past_midnight)
     hours = minutes_past_midnight / 60
     minutes = minutes_past_midnight % 60
     format('%0.2d:%0.2d', hours, minutes)
@@ -37,10 +37,14 @@ class Clock
     Clock.new(minute: minutes_past_midnight - _other_clock.minutes_past_midnight)
   end
 
+  def ==(_other_clock)
+    normalize_minutes(minutes_past_midnight) == normalize_minutes(_other_clock.minutes_past_midnight)
+  end
+
   private
 
-  def normalize_minutes
-    @minutes_past_midnight += 24 * 60 if minutes_past_midnight < 0
-    @minutes_past_midnight = minutes_past_midnight % (24 * 60)
+  def normalize_minutes(minutes_to_normalize)
+    minutes_to_normalize += 24 * 60 if minutes_to_normalize < 0
+    minutes_to_normalize = minutes_to_normalize % (24 * 60)
   end
 end
