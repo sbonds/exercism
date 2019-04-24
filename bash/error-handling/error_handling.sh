@@ -9,17 +9,11 @@ set -o errexit
 set -o nounset
 
 main() {
-  greetee="$1"
-
-  # If there's nobody to greet, print appropriate error
-  if [ -z "$greetee" ]; then
-    echo "Usage: ./error_handling <greetee>"
-    exit 1
-  fi
+  greetee=${1:-}
 
   # If there are extra arguments, print appropriate error
   if [ "$#" -ne 1 ]; then
-    echo "Wrong number of arguments, should be exactly one"
+    echo "Usage: ./error_handling <greetee>"
     exit 1
   fi
 
