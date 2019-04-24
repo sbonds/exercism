@@ -33,6 +33,10 @@ class Clock
     Clock.new(minute: minutes_past_midnight + _other_clock.minutes_past_midnight)
   end
 
+  def -(_other_clock)
+    Clock.new(minute: minutes_past_midnight - _other_clock.minutes_past_midnight)
+  end
+
   private
 
   def normalize_minutes
