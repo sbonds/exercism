@@ -19,16 +19,11 @@ main() {
     return 1
   fi
 
-  total_digits=${#number}
-  total=0
-  #echo "Total digits: $total_digits"
-  for (( i=0; i<${#number}; i++ )); do
-    digit=${number:$i:1}
-    digit_exponentiated=$(( digit**total_digits ))
-    #echo "$digit ** $total_digits = $digit_exponentiated"
-    total=$((total + digit_exponentiated))
-    #echo "total so far: $total"
-  done
+    total=0
+    for (( i=0; i<${#number}; i++ )); do
+      digit=${number:$i:1}
+      total=$((total + digit**${#number}))
+    done
 
   if (( total == number)); then
     echo "true"
