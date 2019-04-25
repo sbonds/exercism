@@ -2,6 +2,10 @@
 #    and newlines into new sub-arrays
 # 2) Two pass, splitting newlines into an array of strings and then splitting
 #    each string into digits-on-word-boundaries
+#
+# This first version seems like it could use some significant refactoring.
+# While it works (yay!) there are lots of throw-away variables. I bet a bit of
+# time spent learning map() could be useful in refactoring.
 
 
 class Matrix(object):
