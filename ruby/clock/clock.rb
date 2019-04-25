@@ -19,8 +19,7 @@ class Clock
   attr_reader :minutes_past_midnight
 
   def initialize(hour: 0, minute: 0)
-    @minutes_past_midnight = hour * 60 + minute
-    @minutes_past_midnight = normalize_minutes(minutes_past_midnight)
+    @minutes_past_midnight = normalize_minutes(hour * 60 + minute)
   end
 
   def to_s
