@@ -214,98 +214,98 @@ class ClockTest < Minitest::Test
   end
 
   def test_clocks_an_hour_apart
-    skip
+    # skip
     clock1 = Clock.new(hour: 14, minute: 37)
     clock2 = Clock.new(hour: 15, minute: 37)
     refute clock1 == clock2
   end
 
   def test_clocks_with_hour_overflow
-    skip
+    # skip
     clock1 = Clock.new(hour: 10, minute: 37)
     clock2 = Clock.new(hour: 34, minute: 37)
     assert clock1 == clock2
   end
 
   def test_clocks_with_hour_overflow_by_several_days
-    skip
+    # skip
     clock1 = Clock.new(hour: 3, minute: 11)
     clock2 = Clock.new(hour: 99, minute: 11)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_hour
-    skip
+    # skip
     clock1 = Clock.new(hour: 22, minute: 40)
     clock2 = Clock.new(hour: -2, minute: 40)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_hour_that_wraps
-    skip
+    # skip
     clock1 = Clock.new(hour: 17, minute: 3)
     clock2 = Clock.new(hour: -31, minute: 3)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_hour_that_wraps_multiple_times
-    skip
+    # skip
     clock1 = Clock.new(hour: 13, minute: 49)
     clock2 = Clock.new(hour: -83, minute: 49)
     assert clock1 == clock2
   end
 
   def test_clocks_with_minute_overflow
-    skip
+    # skip
     clock1 = Clock.new(hour: 0, minute: 1)
     clock2 = Clock.new(hour: 0, minute: 1441)
     assert clock1 == clock2
   end
 
   def test_clocks_with_minute_overflow_by_several_days
-    skip
+    # skip
     clock1 = Clock.new(hour: 2, minute: 2)
     clock2 = Clock.new(hour: 2, minute: 4322)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_minute
-    skip
+    # skip
     clock1 = Clock.new(hour: 2, minute: 40)
     clock2 = Clock.new(hour: 3, minute: -20)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_minute_that_wraps
-    skip
+    # skip
     clock1 = Clock.new(hour: 4, minute: 10)
     clock2 = Clock.new(hour: 5, minute: -1490)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_minute_that_wraps_multiple_times
-    skip
+    # skip
     clock1 = Clock.new(hour: 6, minute: 15)
     clock2 = Clock.new(hour: 6, minute: -4305)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_hours_and_minutes
-    skip
+    # skip
     clock1 = Clock.new(hour: 7, minute: 32)
     clock2 = Clock.new(hour: -12, minute: -268)
     assert clock1 == clock2
   end
 
   def test_clocks_with_negative_hours_and_minutes_that_wrap
-    skip
+    # skip
     clock1 = Clock.new(hour: 18, minute: 7)
     clock2 = Clock.new(hour: -54, minute: -11_513)
     assert clock1 == clock2
   end
 
   def test_full_clock_and_zeroed_clock
-    skip
+    # skip
     clock1 = Clock.new(hour: 24, minute: 0)
     clock2 = Clock.new(hour: 0, minute: 0)
     assert clock1 == clock2
