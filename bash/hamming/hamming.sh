@@ -30,6 +30,15 @@ main() {
       # I'm not sure why this didn't work-- the final "echo" never happened
       # when this was here:
       # (( hamming_distance++ ))
+      # This is a combination of "errexit", using post-increment, and how bash
+      # interprets the "success" of a math expression. Since the variable is
+      # post-increment this expression evaluates to 0 even though the variable
+      # is now incremented. The whole expression is then 0 which bash interprets
+      # as "failed" and errexit is set, so the script exits. A simple workaround
+      # is to use a pre-incremement so the expression itself is never 0. Other
+      # methods might be to disable errexit or include "|| :" to conditionally
+      # evaluate a null command that always succeeds. That's a confusing
+      # way to do it. What I came up with below also works just fine. :-)
       hamming_distance=$(( hamming_distance+1 ))
     fi
   done
