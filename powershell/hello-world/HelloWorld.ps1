@@ -1,5 +1,5 @@
 function Get-HelloWorld {
-    <#
+  <#
     .SYNOPSIS
     Outputs "Hello, World!"
     
@@ -12,7 +12,7 @@ function Get-HelloWorld {
     .EXAMPLE
     Get-HelloWorld
     #>
-	param([string]$person = "World")
+  param([string]$person = "World")
 	
-    Throw "Exercise not implemented"
+  "Hello, $person!"
 }
