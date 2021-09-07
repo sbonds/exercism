@@ -3,9 +3,13 @@ def get_rounds(number):
 
      :param number: int - current round number.
      :return: list - current round and the two that follow.
+
+     Implement a function get_rounds(<round_number>) that
+     takes the current round number and returns a single list
+     with that round and the next two that are coming up:
     """
 
-    pass
+    return [number,number+1,number+2]
 
 
 def concatenate_rounds(rounds_1, rounds_2):
