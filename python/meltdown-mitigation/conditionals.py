@@ -35,7 +35,17 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     where generated power = voltage * current
     """
 
-    pass
+    pct_efficiency = ( ( voltage * current ) / theoretical_max_power ) * 100
+    if pct_efficiency < 30:
+        return "black"
+    elif pct_efficiency >= 80:
+        return "green"
+    elif pct_efficiency >= 60:
+        return "orange"
+    elif pct_efficiency >= 30:
+        return "red"
+    else:
+        return "Internal error: efficiency failed to match."
 
 
 def fail_safe(temperature, neutrons_produced_per_second, threshold):
