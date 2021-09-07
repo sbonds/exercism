@@ -18,9 +18,14 @@ def concatenate_rounds(rounds_1, rounds_2):
     :param rounds_1: list - first rounds played.
     :param rounds_2: list - second set of rounds played.
     :return: list - all rounds played.
+
+    Implement a function concatenate_rounds(<rounds_1>, <rounds_2>)
+    that takes two lists and returns a single list consisting of
+    all the rounds in the first list, followed by all the rounds
+    in the second list:
     """
 
-    pass
+    return rounds_1 + rounds_2
 
 
 def list_contains_round(rounds, number):
