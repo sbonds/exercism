@@ -40,7 +40,10 @@ def remove_suffix_ness(word):
     This function takes in a word and returns the base word with `ness` removed.
     """
 
-    pass
+    original_word = word[:-4:]
+    if original_word[-1] == 'i':
+        original_word = original_word[0:-1:] + 'y'
+    return original_word
 
 
 def noun_to_verb(sentence, index):
