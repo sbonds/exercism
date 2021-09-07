@@ -23,8 +23,13 @@ def make_word_groups(vocab_words):
      by ' :: '.
     """
 
-    pass
-
+    SEPARATOR = ' :: '
+    prefix=vocab_words[0]
+    words=vocab_words[1::]
+    prefixed_string = prefix
+    for word in words:
+        prefixed_string += SEPARATOR + prefix + word
+    return prefixed_string
 
 def remove_suffix_ness(word):
     """
