@@ -45,4 +45,4 @@ def win(has_eaten_all_dots, power_pellet_active, touching_ghost):
 
     The function should return True if Pac-Man has eaten all of the dots and has not lost based on the parameters defined in part 3.
     """
-    pass
+    return has_eaten_all_dots and not lose(power_pellet_active,touching_ghost)
