@@ -1,3 +1,6 @@
+"""Manipulate some words to add or remove prefix and suffix or verbify them"""
+SEPARATOR = ' :: '
+
 def add_prefix_un(word):
     """
 
@@ -23,7 +26,6 @@ def make_word_groups(vocab_words):
      by ' :: '.
     """
 
-    SEPARATOR = ' :: '
     prefix=vocab_words[0]
     words=vocab_words[1::]
     prefixed_string = prefix
@@ -64,4 +66,3 @@ def noun_to_verb(sentence, index):
     # return the index-th instance of a word
     word_to_verb=sentence[0:-1:].split()[index]
     return word_to_verb + "en"
-    
