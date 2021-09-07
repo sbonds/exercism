@@ -15,6 +15,7 @@ Python puts a strong emphasis on code readability and (_similar to Haskell_) use
 
 Objects are [assigned][assignment statements] to [names][naming and binding] via the _assignment operator_, `=`.
 [Variables][variables] are written in [`snake_case`][snake case], and _constants_ usually in `SCREAMING_SNAKE_CASE`.
+
 A `name` (_variable or constant_) is not itself typed, and can be attached or re-attached to different objects over its lifetime.
 For extended naming conventions and advice, see [PEP 8][pep8].
 
@@ -27,6 +28,7 @@ For extended naming conventions and advice, see [PEP 8][pep8].
 ```
 
 Constants are typically defined on a [module][module] or _global_ level, and although they _can_ be changed, they are _intended_ to be named only once.
+
 Their `SCREAMING_SNAKE_CASE` is a message to other developers that the assignment should not be altered:
 
 ```python
@@ -45,6 +47,7 @@ The `def` line is terminated with a colon.
 
 Statements for the _body_ of the function begin on the line following `def` and must be _indented in a block_.
 There is no strict indentation amount (_either space **OR** [tab] characters are acceptable_), but [indentation][indentation] must be _consistent for all indented statements_.
+
 Functions explicitly return a value or object via the [`return`][return] keyword.
 
 ```python
@@ -84,12 +87,18 @@ Functions are [_called_][calls] using their name followed by `()`.
 The number of arguments passed in the parentheses must match the number of parameters in the original function definition unless [default arguments][default arguments] have been used:
 
 ```python
-def number_to_the_power_of(number_one, number_two):
-    '''Returns float or int.
-       Takes number_one and raises it to the power of number_two, returning the result.
-    '''
-
-    return number_one ** number_two
+>>> def number_to_the_power_of(number_one, number_two):
+        """Raise a number to an arbitrary power.
+        
+        :param number_one: int the base number.
+        :param number_two: int the power to raise the base number to.
+        :return: int - number raised to power of second number
+        
+        Takes number_one and raises it to the power of number_two, returning the result.
+        """
+        
+        return number_one ** number_two
+...
 
 >>> number_to_the_power_of(3,3)
 27
@@ -99,6 +108,7 @@ A mis-match between parameters and arguments will raise an error:
 
 ```python
 >>> number_to_the_power_of(4,)
+...
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: number_to_the_power_of() missing 1 required positional argument: 'number_two'
@@ -108,13 +118,19 @@ TypeError: number_to_the_power_of() missing 1 required positional argument: 'num
 Adding a [default value][default arguments] for a parameter can defend against such errors:
 
 ```python
-def number_to_the_power_of_default(number_one, number_two=2):
-    '''Returns float or int.
-       Takes number_one and raises it to the power of number_two, returning the result.
-    '''
+>>> def number_to_the_power_of_default(number_one, number_two=2):
+        """Raise a number to an arbitrary power.
+        
+        :param number_one: int the base number.
+        :param number_two: int the power to raise the base number to.
+        :return: int - number raised to power of second number
+        
+        Takes number_one and raises it to the power of number_two, returning the result.
+        """
 
-    return number_one ** number_two
+        return number_one ** number_two
 
+...
 >>> number_to_the_power_of_default(4)
 16
 ```
@@ -142,6 +158,7 @@ import string
 [Comments][comments] in Python start with a `#` that is not part of a string, and end at line termination.
 Unlike many other programming languages, Python does not support multi-line comment marks.
 Each line of a comment block must start with the `#` character.
+
 Comments are ignored by the interpreter:
 
 ```python
@@ -157,17 +174,22 @@ x = "foo"  # This is an in-line comment.
 The first statement of a function body can optionally be a [_docstring_][docstring], which concisely summarizes the function or object's purpose.
 Docstrings are read by automated documentation tools and are returned by calling `.__doc__` on the function, method, or class name.
 They can also function as [lightweight unit tests][doctests], which will be covered in a later exercise.
-They are recommended for programs of any size where documentation is needed:
+They are recommended for programs of any size where documentation is needed, and their conventions are laid out in [PEP257][PEP257]:
 
 ```python
 # An example on a user-defined function.
-def number_to_the_power_of(number_one, number_two):
-    '''Returns float or int.
+>>> def number_to_the_power_of(number_one, number_two):
+        """Raise a number to an arbitrary power.
+        
+        :param number_one: int the base number.
+        :param number_two: int the power to raise the base number to.
+        :return: int - number raised to power of second number
+        
+        Takes number_one and raises it to the power of number_two, returning the result.
+        """
 
-       Takes number_one and raises it to the power of number_two, returning the result.
-    '''
-
-    return number_one ** number_two
+        return number_one ** number_two
+...
 
 >>> print(number_to_the_power_of.__doc__)
 Returns float or int.
@@ -188,6 +210,7 @@ encoding defaults to sys.getdefaultencoding().
 errors defaults to 'strict'.
 ```
 
+[PEP257]: https://www.python.org/dev/peps/pep-0257/
 [assignment statements]: https://docs.python.org/3/reference/simple_stmts.html#assignment-statements
 [calls]: https://docs.python.org/3/reference/expressions.html#calls
 [comments]: https://realpython.com/python-comments-guide/#python-commenting-basics
@@ -267,10 +290,12 @@ Go back through the recipe, adding notes and documentation.
 
 ```python
 def total_time_in_minutes(number_of_layers, actual_bake_time):
-    '''Return elapsed cooking time.
+    """
+    Return elapsed cooking time.
 
-    This function takes two numbers representing the number of layers & the time already spent baking and calculates the total elapsed minutes spent cooking the lasagna.
-'''
+    This function takes two numbers representing the number of layers & the time already spent 
+    baking and calculates the total elapsed minutes spent cooking the lasagna.
+    """
 ```
 
 ## Source
