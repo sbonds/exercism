@@ -36,9 +36,11 @@ def get_value(denomination, number_of_bills):
     :param denomination: int - the value of a bill.
     :param number_of_bills: int - amount of bills you received.
     :return: int - total value of bills you now have
+
+    This function should return the total value of bills you now have.
     """
 
-    pass
+    return number_of_bills * denomination
 
 
 def get_number_of_bills(budget, denomination):
