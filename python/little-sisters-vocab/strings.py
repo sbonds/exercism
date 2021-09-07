@@ -59,4 +59,8 @@ def noun_to_verb(sentence, index):
     adjective as a verb.
     """
 
-    pass
+    # Drop the final character (.)
+    # split on whitespace to get a list of words
+    # return the index-th instance of a word
+    word_to_verb=sentence[0:-1:].split()[index]
+    return word_to_verb + "en"
