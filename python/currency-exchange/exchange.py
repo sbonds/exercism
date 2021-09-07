@@ -85,6 +85,19 @@ def unexchangeable_value(budget, exchange_rate, spread, denomination):
     :param spread: int - percentage that is taken as an exchange fee.
     :param denomination: int - the value of a single bill.
     :return: int - unexchangeable value
+
+    This function should return the unexchangeable value considering 
+    the budget, exchange_rate, spread, & denomination.
     """
 
-    pass
+    actual_exchange_rate_with_spread = exchange_rate * (1 + spread / 100)
+    other_currency_received = exchangeable_value(budget, exchange_rate, spread, denomination)
+    amount_paid_for_other_currency = other_currency_received * actual_exchange_rate_with_spread
+    amount_left_in_budget = budget - amount_paid_for_other_currency
+    exchangable_value_of_amount_left_in_budget = exchangeable_value(amount_left_in_budget, exchange_rate, spread, denomination)
+
+    return exchangable_value_of_amount_left_in_budget
+
+unexchangeable_value(127.25, 1.20, 10, 20) # 16: left over value in TARGET currency
+unexchangeable_value(127.25, 1.20, 10, 5) # 1
+unexchangeable_value(1500, 0.84, 25, 40) # 28
