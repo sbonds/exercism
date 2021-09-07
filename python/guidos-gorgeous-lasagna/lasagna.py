@@ -1,3 +1,5 @@
+"""Provide some functions related to cooking a lasagne"""
+
 EXPECTED_BAKE_TIME=40
 PREPARATION_TIME=2 # Per layer?
 
