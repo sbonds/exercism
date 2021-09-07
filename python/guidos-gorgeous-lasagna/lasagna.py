@@ -14,7 +14,6 @@ def bake_time_remaining(elapsed_bake_time):
 
     return EXPECTED_BAKE_TIME - elapsed_bake_time
 
-# TODO: define the 'preparation_time_in_minutes()' function
 def preparation_time_in_minutes(layers_of_lasagne):
     """Calculate the prep time needed.
 
