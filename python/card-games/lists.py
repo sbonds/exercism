@@ -47,9 +47,12 @@ def card_average(hand):
 
     :param hand: list - cards in hand.
     :return:  float - average value of the cards in the hand.
+
+    Implement a function card_average(<hand>) that will return
+    the average value of a hand of Black Joe.
     """
 
-    pass
+    return sum(hand) / len(hand)
 
 
 def approx_average_is_average(hand):
