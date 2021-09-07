@@ -8,7 +8,7 @@ def eat_ghost(power_pellet_active, touching_ghost):
 
     The function should return True only if Pac-Man has a power pellet active and is touching a ghost.
     """
-    pass
+    return power_pellet_active and touching_ghost
 
 
 def score(touching_power_pellet, touching_dot):
