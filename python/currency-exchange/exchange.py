@@ -22,9 +22,12 @@ def get_change(budget, exchanging_value):
     :param budget: float - amount of money you own.
     :param exchanging_value: int - amount of your money you want to exchange now.
     :return: float - amount left of your starting currency after exchanging
+
+    This function should return the amount left of your starting currency after 
+    exchanging exchanging_value.
     """
 
-    pass
+    return budget - exchanging_value
 
 
 def get_value(denomination, number_of_bills):
