@@ -64,3 +64,4 @@ def noun_to_verb(sentence, index):
     # return the index-th instance of a word
     word_to_verb=sentence[0:-1:].split()[index]
     return word_to_verb + "en"
+    
