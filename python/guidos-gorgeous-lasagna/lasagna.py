@@ -1,9 +1,7 @@
-# TODO: define the 'EXPECTED_BAKE_TIME' constant
-# TODO: define the 'PREPARATION_TIME' constant
+EXPECTED_BAKE_TIME=40
+PREPARATION_TIME=2 # Per layer?
 
-
-# TODO: define the 'bake_time_remaining()' function
-def bake_time_remaining():
+def bake_time_remaining(elapsed_bake_time):
     """Calculate the bake time remaining.
 
     :param elapsed_bake_time: int baking time already elapsed.
@@ -14,8 +12,20 @@ def bake_time_remaining():
     based on the `EXPECTED_BAKE_TIME`.
     """
 
-    pass
+    return EXPECTED_BAKE_TIME - elapsed_bake_time
 
 # TODO: define the 'preparation_time_in_minutes()' function
+def preparation_time_in_minutes(layers_of_lasagne):
+    """Calculate the prep time needed.
+
+    :param layers_of_lasagne: int layers desired in this lasagne.
+    :return: int remaining bake time derived from 'EXPECTED_BAKE_TIME'.
+
+    Function that takes the number of layers in the lasagna as
+    an argument and returns how many minutes of prep time the lasagna needs
+    based on the `PREPARATION_TIME` per layer.
+    """
+
+    return layers_of_lasagne * PREPARATION_TIME
 
 # TODO: define the 'elapsed_time_in_minutes()' function
