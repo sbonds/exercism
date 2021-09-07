@@ -32,7 +32,7 @@ def lose(power_pellet_active, touching_ghost):
 
     The function should return True if Pac-Man is touching a ghost and does not have a power pellet active.
     """
-    pass
+    return touching_ghost and not power_pellet_active
 
 
 def win(has_eaten_all_dots, power_pellet_active, touching_ghost):
