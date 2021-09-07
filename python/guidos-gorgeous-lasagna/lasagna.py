@@ -28,4 +28,16 @@ def preparation_time_in_minutes(layers_of_lasagne):
 
     return layers_of_lasagne * PREPARATION_TIME
 
-# TODO: define the 'elapsed_time_in_minutes()' function
+def elapsed_time_in_minutes(layers_of_lasagne,elapsed_bake_time):
+    """Calculate the total time elapsed for the creation of this lasagne.
+
+    :param layers_of_lasagne: int layers desired in this lasagne.
+    :param elapsed_bake_time: int baking time already elapsed.
+    :return: int total elapsed time derived from preparation_time_in_minutes and elapsed_bake_time.
+
+    Function that takes the number of layers in the lasagna and the
+    elapsed bake time as arguments and returns how long the whole
+    lasagne creation process has taken so far.
+    """
+
+    return preparation_time_in_minutes(layers_of_lasagne) + elapsed_bake_time
