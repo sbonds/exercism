@@ -1,12 +1,19 @@
+"""Exercism python currency-exchange"""
 def estimate_value(budget, exchange_rate):
     """
 
     :param budget: float - amount of money you are planning to exchange.
     :param exchange_rate: float - unit value of the foreign currency.
     :return: float - estimated value of the foreign currency you can receive
+
+    This function should return the estimated value of the foreign currency 
+    you can receive based on your budget and the current exchange rate.
+
+    Note: If your currency is USD and you want to exchange USD for EUR with an 
+    exchange rate of 1.20, then 1.20 USD == 1 EUR.
     """
 
-    pass
+    return budget / exchange_rate
 
 
 def get_change(budget, exchanging_value):
