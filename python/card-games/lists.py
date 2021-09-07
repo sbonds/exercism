@@ -60,9 +60,13 @@ def approx_average_is_average(hand):
 
     :param hand: list - cards in hand.
     :return: bool - is approximate average the same as true average?
+
+    Take the average of the first and last card values in the hand
+    and compare to the real average. Return true if they equal.
     """
 
-    pass
+    approx_average = (hand[0] + hand[-1])/2
+    return approx_average == card_average(hand)
 
 
 def average_even_is_average_odd(hand):
