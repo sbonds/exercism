@@ -41,3 +41,8 @@ def elapsed_time_in_minutes(layers_of_lasagne,elapsed_bake_time):
     """
 
     return preparation_time_in_minutes(layers_of_lasagne) + elapsed_bake_time
+
+# Local pytest in a virtual environment returns these warnings:
+#  lasagna_test.py:13
+#  <path>\Exercism\python\guidos-gorgeous-lasagna\lasagna_test.py:13: PytestUnknownMarkWarning: Unknown pytest.mark.task - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/mark.html
+#    @pytest.mark.task(taskno=1)
