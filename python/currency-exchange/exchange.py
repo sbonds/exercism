@@ -6,10 +6,10 @@ def estimate_value(budget, exchange_rate):
     :param exchange_rate: float - unit value of the foreign currency.
     :return: float - estimated value of the foreign currency you can receive
 
-    This function should return the estimated value of the foreign currency 
+    This function should return the estimated value of the foreign currency
     you can receive based on your budget and the current exchange rate.
 
-    Note: If your currency is USD and you want to exchange USD for EUR with an 
+    Note: If your currency is USD and you want to exchange USD for EUR with an
     exchange rate of 1.20, then 1.20 USD == 1 EUR.
     """
 
@@ -23,7 +23,7 @@ def get_change(budget, exchanging_value):
     :param exchanging_value: int - amount of your money you want to exchange now.
     :return: float - amount left of your starting currency after exchanging
 
-    This function should return the amount left of your starting currency after 
+    This function should return the amount left of your starting currency after
     exchanging exchanging_value.
     """
 
@@ -65,10 +65,11 @@ def exchangeable_value(budget, exchange_rate, spread, denomination):
     :param denomination: int - the value of a single bill.
     :return: int - maximum value you can get
 
-    This function should return the maximum value you can get considering the budget, 
+    This function should return the maximum value you can get considering the budget,
     exchange_rate, spread, & denomination.
 
-    Note: If 1 EUR == 1.20 USD and the spread is 10%, the actual exchange rate becomes 1 EUR == 1.32 USD.
+    Note: If 1 EUR == 1.20 USD and the spread is 10%, the actual exchange rate
+    becomes 1 EUR == 1.32 USD.
     """
 
     actual_exchange_rate_with_spread = exchange_rate * (1 + spread / 100)
@@ -86,7 +87,7 @@ def unexchangeable_value(budget, exchange_rate, spread, denomination):
     :param denomination: int - the value of a single bill.
     :return: int - unexchangeable value
 
-    This function should return the unexchangeable value considering 
+    This function should return the unexchangeable value considering
     the budget, exchange_rate, spread, & denomination.
     """
 
@@ -94,7 +95,8 @@ def unexchangeable_value(budget, exchange_rate, spread, denomination):
     other_currency_received = exchangeable_value(budget, exchange_rate, spread, denomination)
     amount_paid_for_other_currency = other_currency_received * actual_exchange_rate_with_spread
     amount_left_in_budget = get_change(budget,amount_paid_for_other_currency)
-    amount_left_in_budget_in_other_currency = estimate_value(amount_left_in_budget,actual_exchange_rate_with_spread)
+    amount_left_in_budget_in_other_currency = \
+        estimate_value(amount_left_in_budget,actual_exchange_rate_with_spread)
 
     # Returning this as an int seems arbitrary but it's what the test suite wants.
     return int(amount_left_in_budget_in_other_currency)
