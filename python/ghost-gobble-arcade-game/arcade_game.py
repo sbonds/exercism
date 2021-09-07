@@ -20,7 +20,7 @@ def score(touching_power_pellet, touching_dot):
 
     The function should return True if Pac-Man is touching a power pellet or a dot.
     """
-    pass
+    return touching_power_pellet or touching_dot
 
 
 def lose(power_pellet_active, touching_ghost):
