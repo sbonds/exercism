@@ -38,14 +38,13 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     pct_efficiency = ( ( voltage * current ) / theoretical_max_power ) * 100
     if pct_efficiency < 30:
         return "black"
-    elif pct_efficiency >= 80:
+    if pct_efficiency >= 80:
         return "green"
-    elif pct_efficiency >= 60:
+    if pct_efficiency >= 60:
         return "orange"
-    elif pct_efficiency >= 30:
+    if pct_efficiency >= 30:
         return "red"
-    else:
-        return "Internal error: efficiency failed to match."
+    return "Internal error: efficiency failed to match."
 
 
 def fail_safe(temperature, neutrons_produced_per_second, threshold):
@@ -61,12 +60,11 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold):
     - `temperature * neutron per second` is not in the above-stated ranges ==  'DANGER'
     """
 
-    safetyValue = temperature * neutrons_produced_per_second
-    lowSafe = 0.9 * threshold
-    highSafe = 1.1 * threshold
-    if safetyValue < 0.4 * threshold:
+    safety_value = temperature * neutrons_produced_per_second
+    low_safe = 0.9 * threshold
+    high_safe = 1.1 * threshold
+    if safety_value < 0.4 * threshold:
         return "LOW"
-    elif (safetyValue >= lowSafe ) and (safetyValue <= highSafe):
+    if (safety_value >= low_safe ) and (safety_value <= high_safe):
         return "NORMAL"
-    else:
-        return "DANGER"
+    return "DANGER"
