@@ -71,8 +71,8 @@ def exchangeable_value(budget, exchange_rate, spread, denomination):
     Note: If 1 EUR == 1.20 USD and the spread is 10%, the actual exchange rate becomes 1 EUR == 1.32 USD.
     """
 
-    amount_exchanged = budget * (1 - spread / 100)
-    target_currency_value = estimate_value(amount_exchanged,exchange_rate)
+    actual_exchange_rate_with_spread = exchange_rate * (1 + spread / 100)
+    target_currency_value = estimate_value(budget,actual_exchange_rate_with_spread)
     bills_received = get_number_of_bills(target_currency_value,denomination)
     return bills_received * denomination
 
@@ -88,5 +88,3 @@ def unexchangeable_value(budget, exchange_rate, spread, denomination):
     """
 
     pass
-
-exchangeable_value(100000, 10.61, 10, 1) # 8568
