@@ -98,8 +98,7 @@ def maybe_double_last(hand):
     is a Jack (11), double its value before returning the hand
     """
 
+    # The tests seem to expect us to change the original array in-place
     if hand[-1] == 11:
-        newhand = hand[0:-1:] + [22]
-        return newhand
-    else:
-        return hand
+        hand[-1] = 22
+    return hand
