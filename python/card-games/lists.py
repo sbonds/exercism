@@ -1,3 +1,4 @@
+"""Exercism python card-games"""
 def get_rounds(number):
     """
 
