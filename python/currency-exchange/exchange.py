@@ -92,11 +92,9 @@ def unexchangeable_value(budget, exchange_rate, spread, denomination):
     """
 
     actual_exchange_rate_with_spread = exchange_rate * (1 + spread / 100)
-    other_currency_received = exchangeable_value(budget, exchange_rate, spread, denomination)
-    amount_paid_for_other_currency = other_currency_received * actual_exchange_rate_with_spread
-    amount_left_in_budget = get_change(budget,amount_paid_for_other_currency)
     amount_left_in_budget_in_other_currency = \
-        estimate_value(amount_left_in_budget,actual_exchange_rate_with_spread)
+        estimate_value(budget, actual_exchange_rate_with_spread) \
+        - exchangeable_value(budget, exchange_rate, spread, denomination)
 
     # Returning this as an int seems arbitrary but it's what the test suite wants.
     return int(amount_left_in_budget_in_other_currency)
