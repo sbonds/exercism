@@ -92,9 +92,12 @@ def unexchangeable_value(budget, exchange_rate, spread, denomination):
     """
 
     actual_exchange_rate_with_spread = exchange_rate * (1 + spread / 100)
-    amount_left_in_budget_in_other_currency = \
-        estimate_value(budget, actual_exchange_rate_with_spread) \
-        - exchangeable_value(budget, exchange_rate, spread, denomination)
+    #amount_left_in_budget_in_other_currency = \
+    #    estimate_value(budget, actual_exchange_rate_with_spread) \
+    #    - exchangeable_value(budget, exchange_rate, spread, denomination)
+    amount_left_in_budget_in_other_currency = ( budget / actual_exchange_rate_with_spread ) % denomination
 
     # Returning this as an int seems arbitrary but it's what the test suite wants.
-    return int(amount_left_in_budget_in_other_currency)
+    #return int(amount_left_in_budget_in_other_currency)
+    # Modulus is an integer operation so forcing an int is no longer needed.
+    return amount_left_in_budget_in_other_currency
