@@ -1,3 +1,6 @@
+from asyncio.windows_events import NULL
+
+
 def add_me_to_the_queue(express_queue, normal_queue, ticket_type, person_name):
     """
 
@@ -7,7 +10,18 @@ def add_me_to_the_queue(express_queue, normal_queue, ticket_type, person_name):
     :param person_name: str - name of person to add to a queue.
     :return: list - the (updated) queue the name was added to.
     """
-    pass
+
+    # Python makes it a bit tricky to change a list in-place (mutate the list)
+    returned_queue = []
+    if (ticket_type == 1):
+        returned_queue = express_queue
+    elif (ticket_type == 0):
+        returned_queue = normal_queue
+    else:
+        return NULL
+    
+    returned_queue.append(person_name)
+    return(returned_queue)
 
 
 def find_my_friend(queue, friend_name):
