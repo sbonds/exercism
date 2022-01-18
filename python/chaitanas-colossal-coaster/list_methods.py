@@ -63,7 +63,7 @@ def how_many_namefellows(queue, person_name):
     :param person_name: str - name you wish to count or track.
     :return:  int - the number of times the name appears in the queue.
     """
-    pass
+    return queue.count(person_name)
 
 
 def remove_the_last_person(queue):
