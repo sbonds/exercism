@@ -1,2 +1,6 @@
 *.nuget.*
 project.assets.json
+# No binaries
+*.dll
+bin/
+obj/
