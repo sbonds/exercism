@@ -33,3 +33,17 @@ If everything goes well, you will be ready to fetch your first real exercise.
 ### Based on
 
 This is an exercise to introduce users to using Exercism - http://en.wikipedia.org/wiki/%22Hello,_world!%22_program
+
+## Setup notes
+
+NuGet was configured with an empty `nuget.config` in `$HOME\AppData\Roaming\NuGet\nuget.config` which led to `NU1100` errors when running `dotnet test` since the project dependency software could not be auto-downloaded.
+
+Fixed via:
+
+`dotnet nuget add source --name "NuGet official package source manually added" "https://api.nuget.org/v3/index.json"`
+
+References:
+
+- [NuGet package consumption overview](https://docs.microsoft.com/en-us/nuget/consume-packages/overview-and-workflow)
+- [nuget.org missing from package sources on fresh install](https://developercommunity.visualstudio.com/t/nugetorg-missing-from-package-sources-on-fresh-ins/1374946)
+- [NuGet settings defaults](https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior#settings-walkthrough)
